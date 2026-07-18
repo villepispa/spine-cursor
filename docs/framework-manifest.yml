@@ -1,0 +1,56 @@
+# Framework manifest (Spine) — public subset
+#
+# Trimmed inventory for the public GitHub export (lane A, v0.1).
+# Schema: docs/governance/framework-overview.md § 6
+#
+# Private labs may carry a much larger member list; do not treat this file
+# as the full Spine inventory.
+
+framework_version: "0.1"
+
+members:
+
+  - id: framework-overview
+    path: docs/governance/framework-overview.md
+    kind: guide
+    scope: core
+    topic: governance
+    depends_on: []
+    triggers: [adding a new framework member, onboarding a new agent, framework audit]
+    status: active
+    size_lines: 160
+
+  - id: framework-manifest
+    path: docs/framework-manifest.yml
+    kind: reference
+    scope: core
+    topic: governance
+    depends_on: [framework-overview]
+    triggers: [routing by topic or scope, framework audit, manifest edits]
+    status: active
+    size_lines: 55
+
+  - id: framework-contributing
+    path: docs/governance/framework-contributing.md
+    kind: guide
+    scope: core
+    topic: governance
+    depends_on: [framework-overview]
+    triggers: [adding a member, retiring a member, renaming a member]
+    status: active
+    size_lines: 130
+
+  - id: ai-governance-principles
+    path: docs/principles/ai-governance-principles.md
+    kind: principles
+    scope: core
+    topic: governance
+    depends_on: [framework-overview]
+    triggers:
+      - agent memory question
+      - audit trail design
+      - exam mode integrity
+      - decision sealing
+      - reproducibility metadata
+    status: active
+    size_lines: 200

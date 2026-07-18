@@ -1,0 +1,72 @@
+# --- Spine public repo — default deny sensitive / local artefacts ---
+
+# Secrets and credentials
+.env
+.env.*
+*.pem
+*.key
+*.p12
+credentials.json
+**/secrets/**
+**/tokens/**
+
+# OS and editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+*.code-workspace
+
+# Node / SDK experiments (if present)
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Python
+__pycache__/
+.venv/
+*.pyc
+
+# Build / PDF intermediates
+docs/_build/
+*.aux
+*.log
+*.out
+
+# Local agent / Cursor machine state (never publish)
+logs/
+plans/
+decision-seals/
+projects/
+plugins/cache/
+subagents/
+*.local.json
+
+# Private adaptation — keep in consumer workspace only
+permissions.json
+mcp.json
+sandbox.json
+cli-config.json
+user-context.mdc
+**/user-context.mdc
+
+# Personal narrative (optional — omit from v1 public repo)
+docs/research/development-journey.md
+docs/research/development-journey_fi.md
+
+# Forum drafts and issue stubs
+forum/
+issues/
+
+# Archives and backups
+_archive/
+**/*.bak
+**/*_archive/
+
+# Drift-scan and local reports
+logs/config-drift-report-*.md
+.config-drift-scan-state.json
+
+# Windows toolchain probe output (if scripted locally)
+toolchain-probe-*.json
