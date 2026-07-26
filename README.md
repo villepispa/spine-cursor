@@ -4,11 +4,11 @@
 principles, governance contracts, and adaptation guidance for teams that use
 coding agents (Cursor and similar) with an honest audit trail.
 
-This public repository is **Phase A** — a redacted **framework documentation**
-subset (lane A). Marketplace plugins (file-ops, logging, config gate) ship in a
-later phase.
+This public repository ships **lane A** (framework docs) and **lane B wave 1**
+(three Cursor Marketplace plugins). Private lab material stays private —
+**slice, don't lift**.
 
-## What's in this repo (v0.1)
+## What's in this repo (v0.2)
 
 | Path | Role |
 |------|------|
@@ -16,14 +16,28 @@ later phase.
 | [`docs/governance/framework-contributing.md`](docs/governance/framework-contributing.md) | Add / retire / rename checklist |
 | [`docs/principles/ai-governance-principles.md`](docs/principles/ai-governance-principles.md) | Memory, sealing, attribution, accountability |
 | [`docs/framework-manifest.yml`](docs/framework-manifest.yml) | Trimmed inventory of exported members only |
+| [`docs/issues.md`](docs/issues.md) | Product issue register (`SPC-` IDs) |
+| [`.cursor-plugin/marketplace.json`](.cursor-plugin/marketplace.json) | Multi-plugin marketplace manifest |
+| [`plugins/spine-agent-file-operations/`](plugins/spine-agent-file-operations/) | File-ops rule + skills (`0.1.0`) |
+| [`plugins/spine-logging-governance/`](plugins/spine-logging-governance/) | Logging rule + skill + empty log templates |
+| [`plugins/spine-config-gate/`](plugins/spine-config-gate/) | Sphinx gate rule + lite agent |
 | [`LICENSE`](LICENSE) | MIT |
+
+## Local plugin install
+
+Symlink each plugin directory into `~/.cursor/plugins/local/<name>`, then
+**Reload Window**. See each plugin `README.md`.
+
+## Documentation
+
+- [CHANGELOG.md](CHANGELOG.md)
+- [docs/issues.md](docs/issues.md)
 
 ## What is not here
 
 - Private lab logs, plans, decision seals, or machine allowlists
 - Live MCP server configs or shell allowlists (consumers keep their own)
-- Full private workspace mirror — **slice, don't lift**
-- Cursor Marketplace plugins (coming in a follow-up release)
+- Full private workspace mirror
 
 ## License
 

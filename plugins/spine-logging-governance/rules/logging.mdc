@@ -1,0 +1,117 @@
+---
+description: >-
+  Logging — four-in-one: (1) agent action logging after effectful actions,
+  (2) auto-approval audit logging for auto-approved actions,
+  (3) chat log for config-related conversations,
+  (4) AI assistance log (AAI) for project-level disclosure per phase.
+  Replaces: agent-logging.mdc, auto-approval-logging.mdc, cursor-chat-log.mdc (archived 2026-03-29).
+alwaysApply: true
+framework:
+  id: logging
+  kind: rule
+  scope: operations
+  topic: change-management
+  depends_on:
+    - framework-overview
+    - change-management-principles
+    - logs-principles
+  triggers: [AL, AAL, cursor chat log, effectful actions, process friction]
+  status: active
+---
+
+# Logging
+
+## 1. Agent action logging (AL)
+
+**After any effectful agent action** (commits, pushes, reviews, task updates, CHANGELOG appends, edits, etc.): append an entry to the correct log file(s). Schemas, paths, scope resolution: [logging SKILL](../skills/logging/SKILL.md).
+
+- **Folder/workspace open**: project or subproject log + global log (with cross-reference).
+- **Single file / no project context**: global log only.
+- One row per logical action; each row: timestamp, agent, action, scope, what, why, `[Tier N]`.
+- **Insertion**: `Grep` the log's sentinel (e.g. `<!-- AL+ -->`) → `StrReplace` sentinel + first data row. Newest first. NEVER: `Add-Content` / Shell reimplementing StrReplace. Sentinel table: [logging SKILL](../skills/logging/SKILL.md).
+- Ordering, timestamps, encoding: [log-writing-conventions.md](../docs/governance/log-writing-conventions.md).
+
+Before each significant tool-call batch, write **one sentence** of status in chat (skip trivial reads).
+
+## 2. Auto-approval audit logging (AAL)
+
+When an action is **auto-approved**: log to normal AL per § 1 **and** append to auto-approval log at same scope. Format: [logging SKILL § AAL](../skills/logging/SKILL.md).
+
+**Decision rule (one sentence):** *AAL = the audit row for actions where no human said yes at the moment of execution.* Everything else logs to AL only.
+
+**DOES count (auto-approval — write AAL):**
+
+| Trigger | Where it shows up | AAL Action value |
+|---------|-------------------|------------------|
+| Tier 1 `permissions.json` auto-insert | `permissions-approvals.md` `auto-inserted` row, no user prompt | `auto-inserted` |
+| Tier 3 `permissions.json` auto-removal under approved-remove policy | `permissions-approvals.md` `auto-removed` row | `auto-removed` |
+| `autoAcceptTaskSuggestionsFrom` config consumes a suggestion without prompt | Cursor IDE setting (currently dormant; placeholder) | `config-auto-accepted` |
+| Agent autonomous bypass of normal gating | Plan body cites the case + AL row | `agent-decision` |
+
+**Does NOT count (user-approved or pre-approved — AL only):**
+
+| Action | Why it is not auto-approval |
+|--------|-----------------------------|
+| Tier 2 `permissions.json` `approved-add` / `approved-remove` after `AskQuestion` or chat consent | Explicit user approval at the moment of the change |
+| Allowlisted Shell command run (e.g. `git status`, `pwsh …`) | Pre-approved by config; the **policy** is the approval, not each invocation |
+| User-initiated slash command (`/backlog`, `/markdown-to-pdf`, …) | Explicit user request initiates the work |
+| User saying "implement", "do it", "go ahead", "implement-all" in chat | Explicit user request, even when batch-shaped |
+| File-ops triage initiated by `/agent-file-operations-violation-triage` | Explicit user action (paste + invoke) |
+
+**Insertion is always:** `Grep "<!-- AAL+ -->"` → `StrReplace` sentinel + first data row, newest first. Schema, paths, scope resolution: [logging SKILL § AAL](../skills/logging/SKILL.md).
+
+## 3. Chat log for config conversations
+
+**Trigger**: chat is primarily about Cursor config (`agents/`, `rules/`, `skills/`, `.cursor/` docs).
+**Action**: append one row to `logs/cursor-chat-log.md` in the same turn. One row per conversation. Column schema: [logging SKILL](../skills/logging/SKILL.md). Backfill if not updated ≥3 h. When substantive, end Summary with `| Models: <slug>` per SKILL.
+
+## 4. AI assistance log (AAI) — project disclosure
+
+**Trigger**: substantive AI-assisted phase completes in a workspace that maintains
+an AI disclosure trail (`logs/ai-assistance-log.md`, `docs/ai-assistance-log.md`,
+or README § AI assistance).
+
+**Action**: append one row per phase boundary (not every edit). Schema and path
+resolution: [logging SKILL § AAI](../skills/logging/SKILL.md). Bootstrap new
+long-lived workspaces from [`templates/ai-assistance-log-template.md`](../templates/ai-assistance-log-template.md).
+
+**Insertion**: `Grep "<!-- AAI+ -->"` → `StrReplace` sentinel + first data row. Newest first.
+
+## 5. Process-friction reports
+
+**Trigger**: end of a plan todo, epic slice, or other substantive phase where the
+agent (or a subagent it orchestrated) struggled with **process** — skills,
+rules, allowlist prompts, hand-offs, missing docs — not ordinary domain
+difficulty.
+
+**Action**:
+
+1. **Chat** — if non-empty, emit the short `### Process friction` block from
+   [agent-process-friction-reports.md](../docs/agent/agent-process-friction-reports.md).
+2. **AL** — Action `process-friction`; schema in [logging SKILL](../skills/logging/SKILL.md)
+   § Process-friction. Parent owns AL when Task / `/multitask` / Explore children
+   cannot write global logs.
+3. **NEVER** edit rules, skills, or allowlist solely because friction was noted;
+   optional backlog draft via
+   [`templates/agent-process-friction-backlog-proposal.md`](../templates/agent-process-friction-backlog-proposal.md)
+   only after user approval to insert.
+4. **Mid-phase:** when a safe choice is blocked, **MAY** ask via
+   `### Friction — need guidance` (stated default), end the turn, then continue
+   per [guide § Ask-then-continue](../docs/agent/agent-process-friction-reports.md#ask-then-continue).
+   Log outcome tokens `ask-answered` / `ask-continue-default` /
+   `ask-unanswered-default`. **NEVER** treat AskQuestion synthetic-skip as
+   consent — prefer markdown ask.
+
+**SKIP** when nothing notable struggled. **Not AAL.**
+
+---
+
+**Ref:** [logging SKILL](../skills/logging/SKILL.md) · [log-writing-conventions.md](../docs/governance/log-writing-conventions.md) · [agents/changelog.md](../agents/changelog.md) (Scribe)
+
+## See also
+
+- [logs-principles.md](../docs/principles/logs-principles.md) — principles layer
+  for AL, AAL, chat log, VM logs, and CL+ as traceability artefacts.
+- [ai-governance-principles.md](../docs/principles/ai-governance-principles.md) —
+  *why* AL/AAL/CL+ are the **honest substrate** of the workspace's audit story
+  (governance principle § 8 honest claim/honest gap; § 2 versioning ≠ sealing).

@@ -1,0 +1,122 @@
+---
+description: >-
+  Safe read, write, search, and edit patterns. Inline decision tree; docs/agent/agent-file-operations-guide.md for edge cases.
+alwaysApply: true
+framework:
+  id: agent-file-operations
+  kind: rule
+  scope: operations
+  topic: governance
+  depends_on: [framework-overview, development-practices]
+  triggers: [StrReplace, Write vs shell, log sentinels, path-safe scans]
+  status: active
+---
+
+# Agent file operations
+
+Read any file before editing. Full reference: [agent-file-operations-guide.md](../docs/agent/agent-file-operations-guide.md).
+
+> **STOP** — if your next action is `Get-Content` → modify → `Set-Content`, you are
+> reimplementing `StrReplace` or `Write`. Use the tool instead.
+
+## Tool decision tree — choose BEFORE any Shell call
+
+1. **Unique text anchor exists?** → `StrReplace`. Zero prompts.
+   - Insert row: match anchor line; replacement = anchor line + `\n` + new row.
+   - Insert at table top: anchor on **separator row + first data row** (always unique).
+2. **Full rewrite?** → `Write`. Zero prompts.
+   - **2b. Large new file (≈80+ lines, dense one-liner payloads, or flaky stream)?** → **PREFER** one **short** `Write` (skeleton / placeholders) + several **`StrReplace`** section fills over one monolithic `Write` — reduces stream truncation and mid-call **Network Error**. If `Write` returns missing `path`/`contents`, treat as **transport failure** and follow [agent-file-operations-guide.md § 0a](../docs/agent/agent-file-operations-guide.md#large-write-payloads).
+3. **Run in a different directory?** (would use `cd …;` or `Set-Location …;` before `git` / `g++` / build) → Shell tool **`working_directory`** parameter instead — command starts with the real tool (`git`, `g++`), allowlist matches, **zero prompts**. Same for **`git -C "repo" <subcommand>`** (`status`, `add`, `commit`, `push`, `pull`, `diff`, …) — use **`working_directory: repo`** + **`git <subcommand> …`**; **`git -C` breaks prefix match** for every allowlisted `git …` entry (the line starts with `git -C`, not `git add` / `git status`, etc.). Full pattern: [cursor-command-allowlist.md](../docs/agent/cursor-command-allowlist.md) § 1 Fix 1 and *Blocked prefix: `git -C`*.
+4. **Compound or multi-statement command?** (contains `;`, `&&`, `if`, `$LASTEXITCODE`, `foreach`, or `./binary`) → One `pwsh -NoProfile -Command "…"` block. **One prompt.** In PS7, `&&` chains statements the same way as other compounds — e.g. **`git mv … && git mv …`** on one bare Shell line is not a single `git`-prefixed invocation.
+   - Escape `$` inside the block with a backtick: `` `$var `` (not `\$var`). Escape newlines: `` `n ``.
+   - Example: `pwsh -NoProfile -Command "`$f = Get-Content path -Raw; Set-Content path -Value `$f.Replace('a','b')"`
+5. **Batched toolchain / PATH discovery (JSON for follow-up steps)?** → `pwsh -NoProfile -File scripts/Invoke-WindowsToolchainProbe.ps1` — Tier **1**; catalog → [agent-file-operations-guide.md § Agent helper scripts catalog](../docs/agent/agent-file-operations-guide.md#agent-helper-scripts-catalog).
+6. **Complex `.NET` / `New-Object`?** → `Write` temp `.ps1` → `pwsh -NoProfile -File`. Last resort.
+
+## Before using Shell to read, find, or write
+
+| Shell impulse | Use instead | Prompts |
+|---|---|---|
+| `Get-ChildItem` + `Select-String` (content search) | `Grep` `files_with_matches` | 0 |
+| OSS / machine-path / identity scrub (home paths, emails, secrets, CFG- IDs in public trees) | Editor **Grep** or shell `rg` per [spine-public-release-redaction-checklist.md](../docs/oss/spine-public-release-redaction-checklist.md) §3; for `.ps1` policy abs-path smells also **`pwsh -NoProfile -File scripts/Invoke-WorkspacePsPolicyAudit.ps1 -RepoRoot <repo> -AgentSummary`** (complementary — not a substitute for §3) | 0–1 |
+| `Get-ChildItem` (name/pattern search) | `Glob`; recursive stats → **`pwsh -NoProfile -File scripts/Invoke-RepoFolderStats.ps1`** | 0 |
+| `Get-Content` / `cat` / `head` / `tail` | `Read` (with `offset`/`limit`); backlog/stats → **`pwsh -NoProfile -File scripts/Invoke-BacklogStats.ps1`** | 0 |
+| `Get-ChildItem` + `Measure-Object` / line counts on `docs/` | **`pwsh -NoProfile -File scripts/Invoke-MarkdownLineStats.ps1`** or **`Invoke-RepoFolderStats.ps1`** | 0 |
+| `Set-Content` / `Out-File` full-file overwrite | `Write` | 0 |
+| `mkdir` · `Get-Date` · build · git | Shell — no editor substitute | 0–1 (allowlist) |
+| `$x = [Environment]::GetEnvironmentVariable('Path'…)` to inspect PATH | `Get-Command *cursor*`, `Get-Command agent` (no assignment; prefix = allowlisted cmdlet) | 0 |
+| `where.exe`, `cd … && …`, `& 'C:\…\tool.exe'` (Windows toolchain probes) | **`pwsh -NoProfile -File scripts/Invoke-WindowsToolchainProbe.ps1`**, or `Get-Command` + Shell `working_directory`, or one `pwsh -NoProfile -Command "…"`; gaps → [cursor-command-allowlist.md §1](../docs/agent/cursor-command-allowlist.md) (*Known gaps — Windows toolchain discovery*) | fewer |
+| `cd … && python -c "…os.walk…"` (template/student missing-file audit) | **PS7** + [agent-file-operations SKILL](../skills/agent-file-operations/SKILL.md) (`working_directory`, `GetRelativePath`, `ConvertTo-Json`); not bare `python` (often off allowlist) | fewer |
+| Refresh session `$env:Path` from registry | One `pwsh -NoProfile -Command "…"` wrapping the assignment + follow-on cmdlets | 1 |
+
+## Template / mirror audits (Shell only)
+
+Use when the question is inventory-only (e.g. **which paths exist under `student/` but not under `templates/`**, or the reverse) and **Glob** cannot express it.
+
+- **Location:** Shell tool **`working_directory`** to the repo/course root — avoid hardcoded `Set-Location` paths. Prefer a **`param` block** (`-CourseRoot`, `-SrcRoot`, `-DstRoot`, `-StartWeek`) and `Push-Location`/`try`/`finally`/`Pop-Location`.
+- **Performance / correctness:** **`Resolve-Path` / canonical `$base` once** before walking files — never per-file `Resolve-Path` on the source root. Build relative paths with **`[System.IO.Path]::GetRelativePath($base, $file.FullName).Replace('\','/')`** instead of `Substring($base.Length + 1)`.
+- **Validation:** `Test-Path -LiteralPath` on `$srcRoot` (and define policy for missing `$dstRoot`) before scanning; surface empty results when week dirs are expected.
+- **Agent output:** Prefer a **single structured object** → **`ConvertTo-Json`** (paths used, counts, sorted `missing` / `existing` arrays) so follow-up steps do not parse `"missing: N"` prose.
+- **Course weeks:** If immediate children are **`NN` two-digit weeks**, restrict with numeric **`>= StartWeek`**; align intent with [version-management SKILL](../skills/version-management/SKILL.md) sync week scope — do not guess the start week.
+- **Not Python:** Do not use **`cd && python -c`** for paired-root missing-file scans — `python` is usually **not** allowlist-prefixed; quoting and path bugs are common (e.g. `replace('\\\\','/')` does not normalize `\` to `/`). Use **PS7** patterns in the skill and [cursor-command-allowlist.md §1](../docs/agent/cursor-command-allowlist.md) (*Known gaps*).
+- **Still apply** the tool decision tree above (wrap compound logic in one `pwsh -NoProfile -Command`, or **`pwsh -File`** for heavy scripts).
+
+Full worked guidance: [skills/agent-file-operations/SKILL.md](../skills/agent-file-operations/SKILL.md).
+
+## Content identity (hash-first when path↔content continuity matters)
+
+**Trigger:** rename / swap / path change of **binary assets** (PNG / PDF / audio / video / large data) where prior context (chat transcripts, forum links, README references, cross-session notes) asserts a specific **content-at-path** relationship. The Read tool's image-preview cache is **path-keyed**; an external rename outside Cursor (file-watcher blind spot) or in-session rename cycles can serve **stale** content for the same path.
+
+**Recipe:**
+
+1. **`Get-FileHash -Algorithm SHA256` first** on every candidate path; record `<sha256>  <semantic-name>` pairs in chat (or via [`scripts/Invoke-AssetHashAudit.ps1`](../scripts/Invoke-AssetHashAudit.ps1) for a folder snapshot).
+2. Treat the **hash** as the identity primitive; subsequent renames are **hash-bookkeeping** only — do **not** re-Read the asset for content verification within the same task.
+3. When a third party (rendered output, server response) reports content properties (image dimensions, byte size, MIME), trust those over re-reading the local preview.
+
+**Anti-pattern (named):** *stale post-rename preview cache* — read → rename → re-read → infer content from the second preview. The second preview may not reflect the current bytes; multiple wrong-direction renames can result. Recurrence example: `logs/agent-log-global.md` 2026-05-11 08:12:29 (issue-22 screenshot loop, three rename cycles).
+
+Worked pattern + PS7 snippet: [skills/agent-file-operations/SKILL.md § Content identity](../skills/agent-file-operations/SKILL.md). Triage class: [skills/agent-file-operations-violation-triage/SKILL.md](../skills/agent-file-operations-violation-triage/SKILL.md).
+
+## NEVER
+
+Absolute bans (`NEVER:` per [framework-contributing.md § Severity tags](../docs/governance/framework-contributing.md#severity-tags-mustpreferavoidnever)) — no agent exception path:
+
+- `cmd /c` — use `pwsh`; build plus `< in > out` → [cursor-command-allowlist.md](../docs/agent/cursor-command-allowlist.md) § 1 **Build + stdin/stdout redirection (avoid `cmd`)**
+- `cat` / `head` / `tail` / `sed` / `awk` / `grep` — use `Read` / `Grep` / `Glob`
+- `powershell.exe` / bare `powershell -Command` — agent shell is PS7; use `pwsh`
+- `Get-Date -Format` — use `-UFormat` (locale-safe); UTC: `Get-Date -AsUTC -UFormat '%Y-%m-%dT%H:%M:%SZ'` — never `[System.DateTime]::UtcNow` in Shell calls
+- `[ClassName]::StaticMethod(…)` / `[Class]::new()` / `New-Object` in `-Command` — includes `[System.IO.File]::`, `[System.Management.Automation.Language.Parser]::`, `[ref]` params, etc.; use PS cmdlets or `Write` a `.ps1`
+- `Add-Content` on newest-first tables — prepend rows, never append
+- **Any assignment as the first token** of a bare Shell call — prefix is `$var`, `$env:Path`, etc., **not** the cmdlet. Examples: `$x = Get-Content`, `$env:Path = [Environment]::GetEnvironmentVariable(...)`. Wrap the whole script in one `pwsh -NoProfile -Command "..."`, or **rewrite** to avoid the assignment (e.g. `Get-Command *cursor*` instead of splitting user PATH into `$currentPath`).
+- Compound command with `;`, `&&`, `if`, `foreach`, `$LASTEXITCODE`, or `./binary` as a bare Shell call — Cursor tokenizes segments individually (see [cursor-command-allowlist.md §1](../docs/agent/cursor-command-allowlist.md) *compound command problem*). `if` and `$LASTEXITCODE` have no allowlist entry and each trigger a prompt **even when the command starts with an allowlisted prefix** (e.g. `git`). **`git` … `&& git` …** on one line is still compound — use **`working_directory`** + **one `git` subcommand per Shell call**, or one **`pwsh -NoProfile -Command`** containing all moves. For **PATH / “is this tool installed?”** checks, prefer **`Get-Command cppcheck, clang-tidy -ErrorAction SilentlyContinue`** (allowlisted prefix) instead of **`where.exe …; if ($LASTEXITCODE -ne 0) { … }`** (`where.exe` is usually off allowlist). When you truly need **`where.exe` + branching**, wrap the whole script: `pwsh -NoProfile -Command "where.exe cursor 2>`$null; if (`$LASTEXITCODE -ne 0) { Write-Output 'not found' }"`.
+- **Unescaped `$variable` inside a `-Command "..."` string** — the outer shell expands `$var` to empty before `pwsh` runs. In `Set-Content -Value $empty -NoNewline`, the switch name (`-NoNewline`) becomes the value argument → **file overwritten with the string `-NoNewline`, total data loss, no error**. Always escape: `` `$var ``. For read→transform→write operations, PREFER `Read` + `Write` tools instead of Shell.
+
+## PS7 script staging
+
+When writing a **new Shell script** for a task:
+
+| Script intent | Where to write |
+|---------------|---------------|
+| Clearly **general-purpose** — `param()`, help, JSON output, Tier annotation ready | `scripts/` + catalog row in guide (decision tree §5/§6) |
+| **Ad-hoc / one-off / experimental** — task-specific, not yet vetted | `scripts/_drafts/` — leave it there after use |
+
+**Behavioural catalog scripts:** when promoting from `_drafts/` or changing policy
+logic in `scripts/` / `hooks/`, use **Pester red-green TDD** per
+[test-driven-development-config-scripts.md](../docs/methods/test-driven-development-config-scripts.md)
+(fixture → red → green → verification chain). Say explicitly in chat that you are
+in TDD mode.
+
+**Safety tier (all workspaces):** every new or changed `.ps1` — config repo or other
+project — must open `.DESCRIPTION` with `**Safety tier: N**`, a **blank help line**, then
+the synopsis ([psscriptanalyzer-lint-policy.md](../docs/powershell/psscriptanalyzer-lint-policy.md) § 5).
+Missing tier → external Tier 3 + Sphinx HOLD ([script-safety-gate SKILL](../skills/script-safety-gate/SKILL.md)).
+
+**Review trigger:** before any wave-N session, when `_drafts/` has ≥5 files, or drafts are >4 weeks old — prefer a drafts-age probe if your workspace ships one; else `Glob scripts/_drafts/*.ps1`. Promote or delete stale drafts.
+
+## Reminders
+
+- Read tool `|` prefix = line-number metadata, not file content.
+- Curated PS7 scripts (Tier 1–2, `pwsh -NoProfile -File`): [agent-file-operations-guide.md § Agent helper scripts catalog](../docs/agent/agent-file-operations-guide.md#agent-helper-scripts-catalog).
+- Draft scripts (ad-hoc / not yet vetted): `scripts/_drafts/` — see § PS7 script staging above.
+- PREFER targeted `Read`/`Grep`/`Glob` over 10+ file bulk reads. → [task-decomposition.mdc](task-decomposition.mdc)
+- **Cross-session asset check:** when a task references a binary asset (`Screenshots/`, PDFs, audio/video) discussed in a previous session, ask: *"Has the on-disk state of `<path>` changed since the previous session?"* — if yes, run `Get-FileHash` (§ Content identity) before any rename / preview-based reasoning.

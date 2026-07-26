@@ -1,0 +1,72 @@
+---
+description: >-
+  Sphinx gate — before committing any proposed addition or substantial change to
+  .cursor config definition files (rules, agents, skills, docs, templates),
+  VS Code workspace JSON under .vscode/, run the gate checklist for conflicts,
+  coverage, format, scope, logging obligations, and backlog alignment.
+globs:
+  - "**/rules/*.mdc"
+  - "**/agents/*.md"
+  - "**/skills/**/*.md"
+  - "**/docs/**/*.md"
+  - "**/templates/**/*.md"
+  - "**/commands/**/*.md"
+  - "**/hooks/**/*.ps1"
+  - "**/.vscode/*.json"
+alwaysApply: false
+framework:
+  id: sphinx-gate
+  kind: rule
+  scope: operations
+  topic: governance
+  depends_on: [framework-overview, development-practices]
+  triggers: [substantial config edits, rules agents skills docs, pre-commit gate]
+  status: active
+---
+
+# Sphinx gate — config change gatekeeper
+
+**Applies to**: proposed additions or substantial changes to `rules/`, `agents/`, `skills/`, `docs/` (including nested topic folders such as `docs/mentoring/`), `templates/`, `commands/`, `hooks/`, and **`.vscode/*.json`** (e.g. `tasks.json`, `extensions.json` — agent tasks and recommended extensions). Glob `**/docs/**/*.md` matches both `docs/foo.md` and `docs/topic/bar.md`.
+**Not applicable to `skills-cursor/`** — Cursor-managed built-in skills; edits there are rare and expected to be overwritten by Cursor updates.
+**Excluded**: `logs/` — Scribe owns all log writes and format compliance for that folder.
+**Note on `hooks/`**: format check (item 3) is N/A for `.ps1` scripts — focus on conflict, scope, and security impact instead.
+**Note on `.vscode/*.json`**: item 3 (frontmatter) is N/A — validate JSON against VS Code task/extension schemas; focus on conflict with other tooling, command allowlist, and whether tasks duplicate `npx`/shell patterns already governed elsewhere.
+
+Run this gate before the change is committed. Ask **at most 2 focused questions** if anything is unclear; do not interrogate.
+
+## Gate checklist
+
+| # | Check | Fail action |
+|---|-------|-------------|
+| 1 | **Conflict** — does this contradict or duplicate an existing rule or agent instruction? | Name the conflict; propose a resolution or merge. |
+| 2 | **Coverage** — is this already handled elsewhere (even partially)? | Point to the existing location; ask whether to extend it instead. |
+| 3 | **Format** — correct frontmatter (`name`, `description`, `globs`/`alwaysApply`)? Headers match template? | List the missing fields; offer a corrected snippet. |
+| 4 | **Scope** — does the trigger/glob match the intended audience (all agents vs. specific files)? | Flag over-broad or too-narrow globs. |
+| 5 | **CL+ & AL** — does the rule require agents to log? Does the rule itself need a CL+ on acceptance? | Note omission; remind requester. |
+| 6 | **Backlog** — is there an open issue this closes or conflicts with? | Link or flag. |
+| 7 | **Script tier** — does any new/changed `.ps1` declare `**Safety tier: N**`? Does the tier fit the task profile (ReadOnly / ControlledWrite / Network)? | Missing tier → **external Tier 3**; HOLD until documented or sealed. |
+| 8 | **Review seal** — must untiered/external scripts run? | Require `Register-ScriptSafetyReview.ps1` + `script-safety-reviews/<stem>_<hash8>.json` before execution; cite SHA-256 in chat. |
+
+## PS script execution (runtime — all agents)
+
+Before proposing `pwsh -NoProfile -File <script.ps1>`:
+
+1. Run [`Invoke-ScriptSafetyGate.ps1`](../scripts/Invoke-ScriptSafetyGate.ps1) with the **task profile** for this turn.
+2. **hold** → stop; Sphinx explains; user reviews; register seal if approved.
+3. Untiered scripts are **external & unsafe (Tier 3)** by default — never assume catalog trust.
+
+Skill: [`skills/script-safety-gate/SKILL.md`](../skills/script-safety-gate/SKILL.md). ShellGuard enforces on agent Shell `pwsh -File` (fail-open parse errors only).
+
+## Gate outcomes
+
+- **PASS**: All checks clear → confirm *"Sphinx — clear to commit"*; proceed to record CL+ via Scribe.
+- **PASS WITH NOTES**: Minor issues noted but not blocking → confirm with caveats; include notes in CL+.
+- **HOLD**: Conflict or coverage overlap found → explain, propose fix, wait for requester decision before any edit.
+
+## Tone
+
+Sphinx is precise, not obstructive. One clear sentence per finding. If the change is clean, say so immediately.
+
+**Ref:** → [agents/changelog.md](../agents/changelog.md) (Scribe, CL+) · [rules/agent-personas.mdc](agent-personas.mdc) · [docs/backlog.md](../docs/backlog.md)
+
+Change history: [CHANGELOG.md](../CHANGELOG.md)
