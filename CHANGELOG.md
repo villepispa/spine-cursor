@@ -7,6 +7,16 @@ versioning aligns with [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ## [Unreleased]
 
+## [0.3.0] — 2026-07-27
+
+### Added
+
+- **`spine-agent-probes` plugin (`0.1.0`, SPC-003)** — public
+  `-AgentSummary` / `-Json` probe contract
+  (`plugins/spine-agent-probes/docs/agent-summary-probe-contract.md`) plus skill;
+  registered in marketplace after wave-1 trio
+- Product issue register tracked in-repo (`docs/issues.md`, including `SPC-003`)
+
 ### Changed
 
 - **Vale / Microsoft Writing Style Guide** — cleared non-`Contractions` error-level

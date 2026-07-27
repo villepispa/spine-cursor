@@ -1,0 +1,20 @@
+{
+  "name": "spine-agent-probes",
+  "version": "0.1.0",
+  "description": "PowerShell -AgentSummary and -Json probe contract for Cursor agents",
+  "author": {
+    "name": "Ville Pispa"
+  },
+  "homepage": "https://github.com/villepispa/spine-cursor",
+  "repository": "https://github.com/villepispa/spine-cursor",
+  "license": "MIT",
+  "keywords": [
+    "cursor-plugin",
+    "powershell",
+    "agent",
+    "AgentSummary",
+    "probe",
+    "governance",
+    "spine"
+  ]
+}

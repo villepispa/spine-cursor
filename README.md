@@ -4,11 +4,11 @@
 principles, governance contracts, and adaptation guidance for teams that use
 coding agents (Cursor and similar) with an honest audit trail.
 
-This public repository ships **lane A** (framework docs) and **lane B wave 1**
-(three Cursor Marketplace plugins). Private lab material stays private —
-**slice, don't lift**.
+This public repository ships **lane A** (framework docs) and **lane B** Cursor
+Marketplace plugins (wave 1 plus `spine-agent-probes`). Private lab material
+stays private — **slice, don't lift**.
 
-## What's in this repo (v0.2)
+## What's in this repo (v0.3)
 
 | Path | Role |
 |------|------|
@@ -19,6 +19,7 @@ This public repository ships **lane A** (framework docs) and **lane B wave 1**
 | [`docs/issues.md`](docs/issues.md) | Product issue register (`SPC-` IDs) |
 | [`.cursor-plugin/marketplace.json`](.cursor-plugin/marketplace.json) | Multi-plugin marketplace manifest |
 | [`plugins/spine-agent-file-operations/`](plugins/spine-agent-file-operations/) | File-ops rule + skills (`0.1.0`) |
+| [`plugins/spine-agent-probes/`](plugins/spine-agent-probes/) | `-AgentSummary` / `-Json` probe contract + skill (`0.1.0`) |
 | [`plugins/spine-logging-governance/`](plugins/spine-logging-governance/) | Logging rule + skill + empty log templates |
 | [`plugins/spine-config-gate/`](plugins/spine-config-gate/) | Sphinx gate rule + lite agent |
 | [`LICENSE`](LICENSE) | MIT |

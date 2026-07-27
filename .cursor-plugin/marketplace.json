@@ -4,7 +4,7 @@
     "name": "Ville Pispa"
   },
   "metadata": {
-    "description": "Spine — AI-agent governance primitives for Cursor (file ops, logging, config gate)",
+    "description": "Spine — AI-agent governance primitives for Cursor (file ops, probes, logging, config gate)",
     "version": "0.1.0",
     "pluginRoot": "plugins"
   },
@@ -13,6 +13,11 @@
       "name": "spine-agent-file-operations",
       "source": "spine-agent-file-operations",
       "description": "Safe Read/Grep/Write patterns for agents — tools over Shell for edits"
+    },
+    {
+      "name": "spine-agent-probes",
+      "source": "spine-agent-probes",
+      "description": "PowerShell -AgentSummary and -Json probe contract for Cursor agents"
     },
     {
       "name": "spine-logging-governance",
