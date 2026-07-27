@@ -23,12 +23,12 @@ framework:
 
 ## 1. Agent action logging (AL)
 
-**After any effectful agent action** (commits, pushes, reviews, task updates, CHANGELOG appends, edits, etc.): append an entry to the correct log file(s). Schemas, paths, scope resolution: [logging SKILL](../skills/logging/SKILL.md).
+**After any effectful agent action** (commits, pushes, reviews, task updates, CHANGELOG appends, edits, etc.): append an entry to the correct log files. Schemas, paths, scope resolution: [logging SKILL](../skills/logging/SKILL.md).
 
 - **Folder/workspace open**: project or subproject log + global log (with cross-reference).
 - **Single file / no project context**: global log only.
 - One row per logical action; each row: timestamp, agent, action, scope, what, why, `[Tier N]`.
-- **Insertion**: `Grep` the log's sentinel (e.g. `<!-- AL+ -->`) → `StrReplace` sentinel + first data row. Newest first. NEVER: `Add-Content` / Shell reimplementing StrReplace. Sentinel table: [logging SKILL](../skills/logging/SKILL.md).
+- **Insertion**: `Grep` the log's sentinel (for example `<!-- AL+ -->`) → `StrReplace` sentinel + first data row. Newest first. NEVER: `Add-Content` / Shell reimplementing StrReplace. Sentinel table: [logging SKILL](../skills/logging/SKILL.md).
 - Ordering, timestamps, encoding: [log-writing-conventions.md](../docs/governance/log-writing-conventions.md).
 
 Before each significant tool-call batch, write **one sentence** of status in chat (skip trivial reads).
@@ -53,9 +53,9 @@ When an action is **auto-approved**: log to normal AL per § 1 **and** append to
 | Action | Why it is not auto-approval |
 |--------|-----------------------------|
 | Tier 2 `permissions.json` `approved-add` / `approved-remove` after `AskQuestion` or chat consent | Explicit user approval at the moment of the change |
-| Allowlisted Shell command run (e.g. `git status`, `pwsh …`) | Pre-approved by config; the **policy** is the approval, not each invocation |
+| Allowlisted Shell command run (for example `git status`, `pwsh …`) | Pre-approved by config; the **policy** is the approval, not each invocation |
 | User-initiated slash command (`/backlog`, `/markdown-to-pdf`, …) | Explicit user request initiates the work |
-| User saying "implement", "do it", "go ahead", "implement-all" in chat | Explicit user request, even when batch-shaped |
+| User saying implement, do it, go ahead, or implement-all in chat | Explicit user request, even when batch-shaped |
 | File-ops triage initiated by `/agent-file-operations-violation-triage` | Explicit user action (paste + invoke) |
 
 **Insertion is always:** `Grep "<!-- AAL+ -->"` → `StrReplace` sentinel + first data row, newest first. Schema, paths, scope resolution: [logging SKILL § AAL](../skills/logging/SKILL.md).

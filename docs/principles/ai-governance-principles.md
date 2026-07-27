@@ -1,7 +1,7 @@
 ---
 framework:
   id: ai-governance-principles
-  kind: principles
+  kind: principle
   scope: core
   topic: governance
   depends_on:
@@ -60,7 +60,7 @@ one steers a high-stakes chat.
 
 ## 2. Memory versioning is not decision sealing
 
-Vendor memory layers answer **"what was in memory at time T"**. Decision
+Vendor memory layers answer **"what was in memory at time T."** Decision
 sealing answers: **"this output O at time T was derived from exactly inputs I,
 retrieved memories M@v, policy P@v, and model R, and any post-hoc edit to those
 references breaks the seal."** The first is a **prerequisite** for the second;

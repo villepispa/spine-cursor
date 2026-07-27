@@ -51,7 +51,7 @@ Full rules: [log-writing-conventions.md § 2](../../docs/governance/log-writing-
 | Column | Content |
 |--------|---------|
 | **When** | Per [log-writing-conventions.md § 2](../../docs/governance/log-writing-conventions.md) |
-| **Agent** | e.g. VM, PM, cpp-reviewer, changelog |
+| **Agent** | for example VM, PM, cpp-reviewer, changelog |
 | **Action** | Short verb phrase |
 | **Scope** | Path or context |
 | **What** | 1–2 lines |
@@ -167,9 +167,9 @@ When action is auto-approved: **in addition to AL**, append AAL.
 | Action | Why it is not auto-approval |
 |--------|-----------------------------|
 | Tier 2 `permissions.json` `approved-add` / `approved-remove` after `AskQuestion` or chat consent | Explicit user approval at the moment of the change |
-| Allowlisted Shell command run (e.g. `git status`, `pwsh …`) | Pre-approved by config; the **policy** is the approval, not each invocation |
+| Allowlisted Shell command run (for example `git status`, `pwsh …`) | Pre-approved by config; the **policy** is the approval, not each invocation |
 | User-initiated slash command (`/backlog`, `/markdown-to-pdf`, …) | Explicit user request initiates the work |
-| User saying "implement", "do it", "go ahead", "implement-all" in chat | Explicit user request, even when batch-shaped |
+| User saying implement, do it, go ahead, or implement-all in chat | Explicit user request, even when batch-shaped |
 | File-ops triage initiated by `/agent-file-operations-violation-triage` | Explicit user action (paste + invoke) |
 
 ### AAL column schema
@@ -201,7 +201,7 @@ Every log file has a unique HTML comment sentinel between the separator row and 
 | forum/cursor/issues/README.md status table | `<!-- ISSUES+ -->` | Newest first |
 | plans/README.md active table | `<!-- PLANS-ACTIVE+ -->` | Newest first |
 | plans/README.md done table | `<!-- PLANS-DONE+ -->` | Newest first |
-| docs/backlog.md per-epic tables | `<!-- BL: <epic-id> -->` | e.g. `<!-- BL: frm-guides -->` — see backlog for all IDs |
+| docs/backlog.md per-epic tables | `<!-- BL: <epic-id> -->` | for example `<!-- BL: frm-guides -->` — see backlog for all IDs |
 | `_archive/archive-log.md` | `<!-- ARCHIVE-LOG+ -->` | Newest first; Loom / archive workflow |
 | logs/file-ops-violation-log.md | `<!-- FOPS-VIOLATION+ -->` | Newest first; triage entries only — counts use direct StrReplace on each row label |
 | logs/agent-compatibility-log.md | `<!-- ACLOG+ -->` | Newest first; one row per `/check-agent-compatibility` scan — skill MUST log same turn as score |
@@ -222,7 +222,7 @@ NEVER: `Add-Content` (appends to EOF; all logs are newest-first). Shell `Get-Con
 
 ### Cross-workspace writes — `Insert-LogRow.ps1`
 
-**Problem:** When the current workspace is not `~/.cursor/` (e.g. a course project), Cursor's External-File Protection blocks `StrReplace`/`Write` for the global log — prompting on every write.
+**Problem:** When the current workspace is not `~/.cursor/` (for example a course project), Cursor's External-File Protection blocks `StrReplace`/`Write` for the global log — prompting on every write.
 
 **Solution:** Use the helper script via terminal. `pwsh` is on the command allowlist → zero prompts.
 
@@ -239,7 +239,7 @@ NEVER: `Add-Content` (appends to EOF; all logs are newest-first). Shell `Get-Con
 pwsh -File "<config-workspace>\hooks\Insert-LogRow.ps1" -LogFile "logs/agent-log-global.md" -Sentinel "<!-- AL+ -->" -Row "| TIMESTAMP | SCOPE | AGENT | ACTION | SUMMARY | REFERENCE | [Tier N] |"
 ```
 
-Replace `logs/agent-log-global.md` and `<!-- AL+ -->` with the appropriate log file and sentinel for other logs (e.g. `logs/auto-approval-log-global.md` / `<!-- AAL+ -->`).
+Replace `logs/agent-log-global.md` and `<!-- AL+ -->` with the appropriate log file and sentinel for other logs (for example `logs/auto-approval-log-global.md` / `<!-- AAL+ -->`).
 
 **This is a scoped exception** to the "NEVER reimplements StrReplace" rule. Rationale: StrReplace is blocked by External-File Protection for cross-workspace paths; the helper script is tested, path-validated, and encoding-safe. The exception applies **only** to global log writes from non-config workspaces.
 
@@ -269,7 +269,7 @@ Replace `logs/agent-log-global.md` and `<!-- AL+ -->` with the appropriate log f
 ## Reference
 
 - Rule: → [logging.mdc](../../rules/logging.mdc)
-- Log steward: → [agents/changelog.md](../../agents/changelog.md) (Scribe — backup, rolling, audit, bootstrap)
+- Log maintainer: → [agents/changelog.md](../../agents/changelog.md) (Scribe — backup, rolling, audit, bootstrap)
 - Conventions: → [log-writing-conventions.md](../../docs/governance/log-writing-conventions.md)
 - Project resolution: → [version-management.md](../../docs/version-management/version-management.md)
 

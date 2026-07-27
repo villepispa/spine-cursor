@@ -26,7 +26,7 @@ framework:
 
 # Sphinx gate — config change gatekeeper
 
-**Applies to**: proposed additions or substantial changes to `rules/`, `agents/`, `skills/`, `docs/` (including nested topic folders such as `docs/mentoring/`), `templates/`, `commands/`, `hooks/`, and **`.vscode/*.json`** (e.g. `tasks.json`, `extensions.json` — agent tasks and recommended extensions). Glob `**/docs/**/*.md` matches both `docs/foo.md` and `docs/topic/bar.md`.
+**Applies to**: proposed additions or substantial changes to `rules/`, `agents/`, `skills/`, `docs/` (including nested topic folders such as `docs/mentoring/`), `templates/`, `commands/`, `hooks/`, and **`.vscode/*.json`** (for example `tasks.json`, `extensions.json` — agent tasks and recommended extensions). Glob `**/docs/**/*.md` matches both `docs/foo.md` and `docs/topic/bar.md`.
 **Not applicable to `skills-cursor/`** — Cursor-managed built-in skills; edits there are rare and expected to be overwritten by Cursor updates.
 **Excluded**: `logs/` — Scribe owns all log writes and format compliance for that folder.
 **Note on `hooks/`**: format check (item 3) is N/A for `.ps1` scripts — focus on conflict, scope, and security impact instead.

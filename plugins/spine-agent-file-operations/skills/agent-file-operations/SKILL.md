@@ -2,7 +2,7 @@
 description: >-
   PowerShell and Shell patterns for template/mirror directory audits, path-safe
   scans, machine-readable output, and allowlist-safe Windows toolchain probes.
-  Use when comparing trees (e.g. templates vs student), reporting missing files,
+  Use when comparing trees (for example templates vs student), reporting missing files,
   scripting bulk inventory where Read / Glob are wrong tools, or checking g++ /
   qmake / cppcheck without Run prompts. Do not use ad hoc `python -c` for the same audits
   (allowlist + correctness). Complements rules/agent-file-operations.mdc.
@@ -24,13 +24,13 @@ framework:
 
 ## When this applies
 
-- Compare **source tree** vs **mirror tree** (e.g. `templates/` → `student/`).
+- Compare **source tree** vs **mirror tree** (for example `templates/` → `student/`).
 - List paths **missing** on one side; optional **existing** list for summaries.
-- Filter by **convention** (e.g. only week folders `^\d{2}$` with numeric `>= StartWeek`).
+- Filter by **convention** (for example only week folders `^\d{2}$` with numeric `>= StartWeek`).
 
 **Prefer** `Glob` / `Grep` / `Read` when the question is names or content inside the workspace without a second root — this skill is for **paired roots** and large walks.
 
-**Do not** reach for **`cd … && python -c "…os.walk…"`** here: `python` is often **absent** from `terminalAllowlist`, **`&&`** is a compound prompt trap, and one-liners often mishandle Windows separators (e.g. `replace('\\\\','/')` does **not** turn `\` into `/`). Stay on **PS7** + this skill.
+**Do not** reach for **`cd … && python -c "…os.walk…"`** here: `python` is often **absent** from `terminalAllowlist`, **`&&`** is a compound prompt trap, and one-liners often mishandle Windows separators (for example `replace('\\\\','/')` does **not** turn `\` into `/`). Stay on **PS7** + this skill.
 
 ## Location and parameters
 
@@ -171,7 +171,7 @@ Subsequent renames are hash-bookkeeping: the chat-recorded hash continues to ide
 **Trust order when sources disagree:**
 
 1. SHA-256 hash of the on-disk file (PS7 `Get-FileHash`).
-2. Third-party rendered properties (e.g. Discourse-served image width/height, server `Content-Length`).
+2. Third-party rendered properties (for example Discourse-served image width/height, server `Content-Length`).
 3. Local file size + `LastWriteTime`.
 4. Read-tool image preview — last (cache may be stale).
 

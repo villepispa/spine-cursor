@@ -48,17 +48,17 @@ If evidence is missing, **still** deliver the analysis template with a **Needs i
 ## Analysis workflow
 
 1. **Read** the current [agent-file-operations-guide.md](../../docs/agent/agent-file-operations-guide.md) **§ Quick reference — tool substitution**, **§ 0a** (*large `Write` / empty-tool / transport failures*), and the **NEVER** list in [agent-file-operations.mdc](../../rules/agent-file-operations.mdc) for the reported action.
-2. **Map** the report to one or more **guide sections** (use section numbers / titles from the guide TOC, e.g. §0 gitignore, §1 read-before-edit, §2 StrReplace, compound Shell, log sentinels).
+2. **Map** the report to one or more **guide sections** (use section numbers / titles from the guide TOC, for example §0 gitignore, §1 read-before-edit, §2 StrReplace, compound Shell, log sentinels).
 3. **Classify** (pick one primary; note secondary if needed):
    - **Confirmed violation** — behavior contradicts an explicit MUST/NEVER or the quick-reference table.
    - **Doc gap** — behavior is wrong, but the guide/rule does not state the expectation clearly enough for a typical agent.
-   - **Ambiguous** — evidence insufficient or context-dependent (e.g. legitimate `pwsh -NoProfile -File` script vs forbidden reinvention).
-   - **False positive / allowed path** — behavior matches a documented exception (e.g. catalog script, sentinel `StrReplace` pattern, temp `.ps1` last resort).
+   - **Ambiguous** — evidence insufficient or context-dependent (for example legitimate `pwsh -NoProfile -File` script vs forbidden reinvention).
+   - **False positive / allowed path** — behavior matches a documented exception (for example catalog script, sentinel `StrReplace` pattern, temp `.ps1` last resort).
    - **Spec conflict** — rule says X, guide says Y; treat as **high priority** fix in the same pass.
 4. **Decide corrections** (only when justified):
    - **Guide** — clarify edge cases, add one example, fix contradictions; keep concise (token budget).
    - **Rule** — only if alwaysApply decision tree is missing a high-leverage line the violation proves necessary; avoid large rule bloat.
-   - **Related doc** — e.g. [cursor-command-allowlist.md](../../docs/agent/cursor-command-allowlist.md), [agent-file-operations/SKILL.md](../agent-file-operations/SKILL.md), [logging/SKILL.md](../logging/SKILL.md) for sentinel rows.
+   - **Related doc** — for example [cursor-command-allowlist.md](../../docs/agent/cursor-command-allowlist.md), [agent-file-operations/SKILL.md](../agent-file-operations/SKILL.md), [logging/SKILL.md](../logging/SKILL.md) for sentinel rows.
 5. **If editing docs:** follow normal config hygiene (PCB if multi-file substantive change, CL+, backlog when tied to a story, `Invoke-FrameworkManifestValidate.ps1` if manifest touched). **If not editing:** still complete the user report.
 
 ## Known recurrence classes
@@ -98,19 +98,19 @@ Write to `logs/file-ops-violation-log.md` in two steps (both use `StrReplace`):
 **a) Increment the count**
 
 1. `Read` `logs/file-ops-violation-log.md` — note the current count for the primary classification and the current Total.
-2. `StrReplace` the count row, e.g. `| Confirmed violation | 3 |` → `| Confirmed violation | 4 |`.
-3. `StrReplace` the Total row, e.g. `| **Total** | **3** |` → `| **Total** | **4** |`.
+2. `StrReplace` the count row, for example `| Confirmed violation | 3 |` → `| Confirmed violation | 4 |`.
+3. `StrReplace` the Total row, for example `| **Total** | **3** |` → `| **Total** | **4** |`.
 
 Each classification row is unique (label is unique within the table) so StrReplace works without a sentinel.
 
 **b) Prepend a triage entry** — use the sentinel `<!-- FOPS-VIOLATION+ -->` per [logging/SKILL.md](../logging/SKILL.md) insertion method.
 
-Entry columns: `| When | Evidence | Classification | Guide section(s) | Verdict | Changes |`
+Entry columns: `| When | Evidence | Classification | Guide sections | Verdict | Changes |`
 
 - **When**: `YYYY-MM-DD HH:mm:ss` local time.
-- **Evidence**: ≤15 words describing the reported behavior (e.g. `"agent ran Get-Content path then Set-Content"`, `"transcript ref: <uuid>"`).
+- **Evidence**: ≤15 words describing the reported behavior (for example `"agent ran Get-Content path then Set-Content"`, `"transcript ref: <uuid>"`).
 - **Classification**: one of the five categories from the Analysis workflow.
-- **Guide section(s)**: section refs (e.g. `§1 read-before-edit`, `§2 StrReplace`).
+- **Guide sections**: section refs (for example `§1 read-before-edit`, `§2 StrReplace`).
 - **Verdict**: 1 sentence.
 - **Changes**: paths of edited files, or `None`.
 

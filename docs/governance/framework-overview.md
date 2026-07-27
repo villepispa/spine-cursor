@@ -49,7 +49,7 @@ references, and operations docs that can be:
 ## 2. Name and identity
 
 **Working name (v1): Spine.** Single-syllable, evocative of structural
-backbone, language- and IDE-neutral.
+support, language- and IDE-neutral.
 
 The framework's **identity** rests on **three contracts**, not the name:
 
@@ -108,7 +108,7 @@ Further cells ship in later public waves.
 
 ## 5. Member kinds
 
-`principles` · `method` · `reference` · `rule` · `skill` · `agent` · `script` ·
+`principle` · `method` · `reference` · `rule` · `skill` · `agent` · `script` ·
 `guide`
 
 ---

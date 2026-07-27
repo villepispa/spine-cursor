@@ -25,7 +25,7 @@ the repository CHANGELOG when substantive.
 
 ---
 
-## 1. Decide first: framework member or workspace asset?
+## 1. Decide first: Framework member or workspace asset?
 
 A new doc joins the framework only if **all three** apply:
 
@@ -67,7 +67,7 @@ PowerShell 7. Do **not** use `Measure-Object -Line` (undercounts blank lines).
 | # | Step | File touched |
 |---|------|--------------|
 | 1 | Choose **scope** (`core` / `bridge` / `adaptation` / `operations`). | — |
-| 2 | Choose **kind** (`principles`, `method`, `reference`, `rule`, `skill`, `agent`, `script`, `guide`). | — |
+| 2 | Choose **kind** (`principle`, `method`, `reference`, `rule`, `skill`, `agent`, `script`, `guide`). | — |
 | 3 | Pick a stable kebab-case **`id`**. | — |
 | 4 | Write the file body. Prefer principles ≤ 220 lines; methods ≤ 120. | new file |
 | 5 | Add YAML front-matter per [overview § 6](framework-overview.md). | new file |
