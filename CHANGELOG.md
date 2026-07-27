@@ -7,6 +7,13 @@ versioning aligns with [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ## [Unreleased]
 
+## [0.3.1] — 2026-07-27
+
+### Changed
+
+- **Related** — README links [spine-automation](https://github.com/villepispa/spine-automation)
+  as the PowerShell implementation sibling of `spine-agent-probes` (`SPC-004`).
+
 ## [0.3.0] — 2026-07-27
 
 ### Added

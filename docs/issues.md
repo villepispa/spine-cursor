@@ -15,6 +15,12 @@ commits, release notes, and related product docs.
 
 _(None.)_
 
+## Resolved issues (2026-07-27 — v0.3.1)
+
+| ID | Summary | Evidence |
+|----|---------|----------|
+| SPC-004 | Related link to spine-automation (probe implementation sibling) | `README.md`; `CHANGELOG.md` 0.3.1 |
+
 ## Resolved issues (2026-07-27 — v0.3.0)
 
 | ID | Summary | Evidence |
@@ -36,6 +42,8 @@ _(None.)_
 ## Activity
 
 <!-- ISSUES-ACTIVITY+ -->
+- **2026-07-27 11:24:00** — Released `0.3.1` (`SPC-004` Related → spine-automation).
+- **2026-07-27 10:34:00** — Resolved `SPC-004` (README Related → spine-automation).
 - **2026-07-27 09:28:00** — Resolved `SPC-003` for release `0.3.0` (`spine-agent-probes` plugin + marketplace).
 - **2026-07-27 09:14:00** — Opened `SPC-003`: `spine-agent-probes` plugin (contract docs + skill + marketplace entry).
 - **2026-07-18 23:16:00** — Aligned `framework_version` to `0.1.0`; CHANGELOG SemVer wording matches Keep a Changelog policy.

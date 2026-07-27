@@ -53,4 +53,5 @@ structure. Humans own every publish decision. Product changelog starts at
 ## Related
 
 - Cursor [Plugins reference](https://cursor.com/docs/reference/plugins) (future plugin waves)
+- Probe **implementation** (PowerShell module + dual-host / ShellGuard templates): [spine-automation](https://github.com/villepispa/spine-automation) — use with `plugins/spine-agent-probes`
 - Sibling product: [winget-audit](https://github.com/villepispa/winget-audit)
