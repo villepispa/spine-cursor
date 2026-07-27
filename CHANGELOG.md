@@ -7,6 +7,13 @@ versioning aligns with [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ## [Unreleased]
 
+### Changed
+
+- **Vale / Microsoft Writing Style Guide** — cleared non-`Contractions` error-level
+  alerts on lane-A docs and wave-1 plugin prose (`e.g.` → `for example`, Avoid
+  `backbone` → `support`, Quotes / Plurals / HeadingColons / Spacing / GenderBias
+  rewords). `Microsoft.Contractions` left as intentional debt (`738817c`).
+
 ## [0.2.0] — 2026-07-26
 
 ### Added
@@ -16,17 +23,14 @@ versioning aligns with [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 - Root `.cursor-plugin/marketplace.json` (`pluginRoot: plugins`)
 - Per-plugin `plugin.json`, README, empty AL/AAL templates, `setup-buddy-lite`
   agent
+- Product issue register (`docs/issues.md`, `SPC-` IDs) and README documentation
+  links (`SPC-002`)
 
 ### Changed
 
 - **Member kind `principles` → `principle`** — singular enum aligned with
   `method` / `rule` / … in overview § 5, contributing checklist, manifest, and
-  `ai-governance-principles` frontmatter (`.cursor` private tree unchanged).
-
-### Added
-
-- Product issue register (`docs/issues.md`, `SPC-` IDs) and README documentation
-  links (`SPC-002`)
+  `ai-governance-principles` frontmatter (private source tree unchanged)
 
 ## [0.1.0] — 2026-07-18
 
