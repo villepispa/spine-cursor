@@ -7,6 +7,16 @@ versioning aligns with [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ## [Unreleased]
 
+_Nothing queued — latest release: **0.3.2**._
+
+## [0.3.2] — 2026-08-21
+
+### Added
+
+- **Probe envelope evidence ≠ receipt (`SPC-005`)** — `spine-agent-probes`
+  contract § 3.1: `-AgentSummary` / JSON envelope is evidence, not an accept;
+  optional `criteriaHash` / `contractId`. Plugin `0.1.1`.
+
 ## [0.3.1] — 2026-07-27
 
 ### Changed

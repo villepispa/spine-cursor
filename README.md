@@ -19,7 +19,7 @@ stays private — **slice, don't lift**.
 | [`docs/issues.md`](docs/issues.md) | Product issue register (`SPC-` IDs) |
 | [`.cursor-plugin/marketplace.json`](.cursor-plugin/marketplace.json) | Multi-plugin marketplace manifest |
 | [`plugins/spine-agent-file-operations/`](plugins/spine-agent-file-operations/) | File-ops rule + skills (`0.1.0`) |
-| [`plugins/spine-agent-probes/`](plugins/spine-agent-probes/) | `-AgentSummary` / `-Json` probe contract + skill (`0.1.0`) |
+| [`plugins/spine-agent-probes/`](plugins/spine-agent-probes/) | `-AgentSummary` / `-Json` probe contract + skill (`0.1.1`) |
 | [`plugins/spine-logging-governance/`](plugins/spine-logging-governance/) | Logging rule + skill + empty log templates |
 | [`plugins/spine-config-gate/`](plugins/spine-config-gate/) | Sphinx gate rule + lite agent |
 | [`LICENSE`](LICENSE) | MIT |

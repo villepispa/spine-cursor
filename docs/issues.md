@@ -15,6 +15,12 @@ commits, release notes, and related product docs.
 
 _(None.)_
 
+## Resolved issues (2026-08-21 — v0.3.2)
+
+| ID | Summary | Evidence |
+|----|---------|----------|
+| SPC-005 | Probe envelope is evidence, not an accept; optional `criteriaHash` / `contractId` | `plugins/spine-agent-probes/` contract § 3.1 + skill; plugin `0.1.1` |
+
 ## Resolved issues (2026-07-27 — v0.3.1)
 
 | ID | Summary | Evidence |
@@ -42,6 +48,8 @@ _(None.)_
 ## Activity
 
 <!-- ISSUES-ACTIVITY+ -->
+- **2026-08-21 20:15:00** — Released `0.3.2` (`SPC-005` probe envelope evidence ≠ accept; plugin `0.1.1`).
+- **2026-08-20 22:10:00** — Resolved `SPC-005` (probe envelope evidence ≠ accept; optional `criteriaHash` / `contractId`; plugin `0.1.1`).
 - **2026-07-27 11:24:00** — Released `0.3.1` (`SPC-004` Related → spine-automation).
 - **2026-07-27 10:34:00** — Resolved `SPC-004` (README Related → spine-automation).
 - **2026-07-27 09:28:00** — Resolved `SPC-003` for release `0.3.0` (`spine-agent-probes` plugin + marketplace).

@@ -103,7 +103,7 @@ missing-dependency cases.
 | `-RepoRoot` / `-Path` | Targets |
 | `-WhatIf` / `-Confirm` | Mutators |
 
-Envelope shape:
+Envelope shape (required keys):
 
 ```json
 {
@@ -116,6 +116,42 @@ Envelope shape:
 ```
 
 Exit taxonomy: `0` clean, `1` failed, `2` missing dependency.
+
+### 3.1 Evidence, not an accept
+
+The JSON envelope and the `-AgentSummary` line are **runtime evidence**. They
+record what the probe observed (exit, tier, summary, payload). They are **not**
+an accept of a plan todo, a backlog `done` mark, or any other completion
+receipt. A coordinator may keep only a reference to this evidence plus a
+separate review state.
+
+Optional binding fields stop an old `PREFIX-OK` from being treated as still
+valid after done criteria changed. Omit both keys when the probe is unbound
+(five-field envelopes stay valid).
+
+| Field | Type | When present |
+|-------|------|----------------|
+| `criteriaHash` | string | Lowercase SHA-256 hex (64 characters) of the UTF-8 criteria text or file at probe time |
+| `contractId` | string | Opaque contract identifier |
+
+Spine.Automation helpers: `Get-SpineCriteriaHash`,
+`Test-SpineProbeCriteriaBinding`. An unbound envelope (no `criteriaHash`)
+fails the binding test — a summary line alone is not enough.
+
+```json
+{
+  "ok": true,
+  "exitCode": 0,
+  "safetyTier": 1,
+  "summary": "VALIDATOR-OK",
+  "data": {},
+  "criteriaHash": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+  "contractId": "probe-contract"
+}
+```
+
+The `criteriaHash` example is SHA-256 of the UTF-8 bytes of `abc` (test vector),
+not a real done-criteria document.
 
 **Nested exit helpers:** when a nested function writes the envelope or summary,
 declare **only the switches that helper uses** and pass them at every call site.
@@ -153,6 +189,8 @@ and human-skimmable gate lines.
 
 ## Change history
 
+- 2026-08-20 — § 3.1 evidence ≠ accept; optional `criteriaHash` / `contractId`
+  (`SPC-005`).
 - 2026-07-27 — Published under `spine-agent-probes` plugin (`SPC-003`).
 - 2026-07-27 — Cousins += official Cursor `cli-for-agent` Success output.
 - 2026-07-27 — Context-budget / missing IDE terminal-compression framing in § 1;

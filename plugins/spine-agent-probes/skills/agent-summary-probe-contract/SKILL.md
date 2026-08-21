@@ -46,8 +46,14 @@ config-gate (`**Safety tier: N**` + runtime hold for untiered scripts).
 5. Nested helpers take **only** the switches they use; pass at every call site.
 6. Open `.DESCRIPTION` with `**Safety tier: N**` (blank help line after).
 7. Exit taxonomy: `0` clean, `1` failed, `2` missing dependency.
+8. Envelope and `-AgentSummary` are **evidence**, not an accept. Optional
+   `criteriaHash` (SHA-256 hex) / `contractId` bind evidence to done criteria;
+   omit when unbound. `Test-SpineProbeCriteriaBinding` is false for unbound
+   `PREFIX-OK` envelopes.
 
 ## Envelope shape
+
+Required keys:
 
 ```json
 {
@@ -58,6 +64,8 @@ config-gate (`**Safety tier: N**` + runtime hold for untiered scripts).
   "data": {}
 }
 ```
+
+Optional: `criteriaHash`, `contractId` (see contract § 3.1).
 
 ## Do not
 
