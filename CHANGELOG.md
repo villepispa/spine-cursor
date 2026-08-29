@@ -7,7 +7,13 @@ versioning aligns with [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ## [Unreleased]
 
-_Nothing queued — latest release: **0.3.2**._
+### Changed
+
+- **Marketplace prep (OSS-016)** — Root README documents user vs project vs
+  team install scope, wave-2 (not in this tag), and the honest gap vs a private
+  Spine lab. `marketplace.json` `metadata.version` aligned to **0.3.2**. Skill
+  `name` frontmatter added on three `SKILL.md` files (file-ops, logging,
+  agent-summary-probe-contract) for Marketplace review.
 
 ## [0.3.2] — 2026-08-21
 

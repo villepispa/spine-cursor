@@ -1,4 +1,5 @@
 ---
+name: agent-file-operations
 description: >-
   PowerShell and Shell patterns for template/mirror directory audits, path-safe
   scans, machine-readable output, and allowlist-safe Windows toolchain probes.

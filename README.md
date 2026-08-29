@@ -24,10 +24,52 @@ stays private — **slice, don't lift**.
 | [`plugins/spine-config-gate/`](plugins/spine-config-gate/) | Sphinx gate rule + lite agent |
 | [`LICENSE`](LICENSE) | MIT |
 
-## Local plugin install
+## Install
 
-Symlink each plugin directory into `~/.cursor/plugins/local/<name>`, then
-**Reload Window**. See each plugin `README.md`.
+### Cursor Marketplace (after listing)
+
+1. Open **Customize** in the sidebar.
+2. Find the Spine plugins (`spine-agent-file-operations`, `spine-agent-probes`,
+   `spine-logging-governance`, `spine-config-gate`).
+3. Choose **Install** and pick a **scope**:
+   - **User** — follows you across every project. Use when these governance
+     primitives should be default everywhere.
+   - **Project** (workspace) — this folder only. Prefer this for graded labs,
+     client trees, or any repo that must not inherit agent-file-ops / Sphinx
+     habits.
+   - **Team** — Cursor Team/Enterprise shared marketplace. This public GitHub
+     tree does **not** configure your org; vendor it into a private team
+     marketplace if you need Required / Default On.
+
+Until the public Marketplace review is approved, use **Local** below.
+Maintainers submit at
+[cursor.com/marketplace/publish](https://cursor.com/marketplace/publish)
+with this repository URL.
+
+### Local (clone / pre-review)
+
+Symlink each plugin directory into `~/.cursor/plugins/local/<name>` (user-scope
+local load), then **Reload Window**. See each plugin `README.md`. That path is
+user-wide, not project-scoped.
+
+Install order (soft): file-operations → agent-probes → logging-governance →
+config-gate.
+
+## Wave 2 (not in this tag)
+
+This tag ships wave-1 plugins plus `spine-agent-probes`. Later extracts (no
+date promise): `spine-completion-evidence`, `spine-task-decomposition`, and a
+re-export of wave-1 rules after the private lab has moved. Those slices land
+in later tags, not as a silent overwrite of 0.3.2.
+
+## Honest gap vs a private Spine lab
+
+This tree is a **slice**, not a dump of anyone's private `.cursor` workspace.
+You do **not** get audit logs, plan files, shell allowlists, live MCP configs,
+exam-mode course policy, or the always-apply rule set that has moved since the
+last export. Wave-1 plugins here can lag the author's private sources. Local
+clone + symlink stays a supported install path even after a Marketplace
+listing.
 
 ## Documentation
 

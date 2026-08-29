@@ -1,4 +1,5 @@
 ---
+name: agent-summary-probe-contract
 description: >-
   PowerShell probe dialect for Cursor agents: -AgentSummary one-line outcomes,
   -Json envelopes, exit twin (OK vs FAIL vs optional MISS), Safety tier line,

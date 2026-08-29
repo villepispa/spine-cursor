@@ -1,4 +1,5 @@
 ---
+name: logging
 description: >-
   Logging skill — where and how to write AL, AAL, and chat log entries.
   Covers scope resolution (global/project/subproject), column schemas for all log types,
