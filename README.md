@@ -1,5 +1,7 @@
 # Spine
 
+![Spine](assets/logo.svg)
+
 **Spine** is an AI-agent-friendly software development practice framework:
 principles, governance contracts, and adaptation guidance for teams that use
 coding agents (Cursor and similar) with an honest audit trail.
@@ -89,7 +91,8 @@ MIT — see [`LICENSE`](LICENSE).
 ## AI assistance
 
 Public docs were prepared with Cursor Agent assistance for redaction and
-structure. Humans own every publish decision. Product changelog starts at
+structure. The family marketplace mark (`assets/logo.svg`) was generated and
+vectorized with Cursor Agent on 2026-08-29. Humans own every publish decision. Product changelog starts at
 `v0.1.0` in this tree.
 
 ## Related

@@ -12,22 +12,26 @@
     {
       "name": "spine-agent-file-operations",
       "source": "spine-agent-file-operations",
-      "description": "Safe Read/Grep/Write patterns for agents — tools over Shell for edits"
+      "description": "Safe Read/Grep/Write patterns for agents — tools over Shell for edits",
+      "logo": "assets/logo.svg"
     },
     {
       "name": "spine-agent-probes",
       "source": "spine-agent-probes",
-      "description": "PowerShell -AgentSummary and -Json probe contract for Cursor agents"
+      "description": "PowerShell -AgentSummary and -Json probe contract for Cursor agents",
+      "logo": "assets/logo.svg"
     },
     {
       "name": "spine-logging-governance",
       "source": "spine-logging-governance",
-      "description": "AL/AAL logging discipline for config and product repos"
+      "description": "AL/AAL logging discipline for config and product repos",
+      "logo": "assets/logo.svg"
     },
     {
       "name": "spine-config-gate",
       "source": "spine-config-gate",
-      "description": "Pre-commit Sphinx gate checklist for rules/skills/agents edits"
+      "description": "Pre-commit Sphinx gate checklist for rules/skills/agents edits",
+      "logo": "assets/logo.svg"
     }
   ]
 }

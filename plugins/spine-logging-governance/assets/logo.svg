@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Spine</title>
+  <desc id="desc">Four stacked teal vertebrae on a dark tile, joined by an audit canal. Family mark for Spine Cursor plugins.</desc>
+  <rect width="512" height="512" rx="108" fill="#0B1220"/>
+  <rect x="88" y="108" width="248" height="62" rx="31" fill="#7EE8D4"/>
+  <rect x="140" y="186" width="248" height="62" rx="31" fill="#2DD4BF"/>
+  <rect x="180" y="264" width="248" height="62" rx="31" fill="#14B8A6"/>
+  <rect x="180" y="342" width="248" height="62" rx="31" fill="#0F766E"/>
+  <polyline fill="none" stroke="#5EEAD4" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"
+    points="212,118 212,164 264,192 264,242 304,270 304,394"/>
+</svg>
