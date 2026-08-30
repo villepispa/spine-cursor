@@ -20,6 +20,9 @@ versioning aligns with [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ### Changed
 
+- **README mark size** — GitHub README now uses `<img width="128" height="128">`
+  so the SVG does not fill the article column. `logo.svg` has intrinsic
+  `width`/`height` 512 (viewBox was already 512).
 - **Marketplace prep (OSS-016)** — Root README documents user vs project vs
   team install scope, wave-2 (not in this tag), and the honest gap vs a private
   Spine lab. `marketplace.json` `metadata.version` aligned to **0.3.2**. Skill

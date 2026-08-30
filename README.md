@@ -1,6 +1,6 @@
 # Spine
 
-![Spine](assets/logo.svg)
+<img src="assets/logo.svg" width="128" height="128" alt="Spine">
 
 **Spine** is an AI-agent-friendly software development practice framework:
 principles, governance contracts, and adaptation guidance for teams that use
