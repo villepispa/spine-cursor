@@ -1,6 +1,6 @@
 # spine-logging-governance
 
-Cursor plugin (Spine wave 1): **AL** (agent log) and **AAL** (auto-approval log)
+Cursor plugin (Spine Framework wave 1): **AL** (agent log) and **AAL** (auto-approval log)
 discipline — newest-first tables, sentinel markers, scope resolution.
 
 ## Install (local)

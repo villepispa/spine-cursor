@@ -1,6 +1,6 @@
 # spine-agent-file-operations
 
-Cursor plugin (Spine wave 1): keep agents on **Read / Grep / Glob / Write / StrReplace**
+Cursor plugin (Spine Framework wave 1): keep agents on **Read / Grep / Glob / Write / StrReplace**
 for file work instead of Shell `Get-Content` / `Set-Content` / `cat` / `grep`.
 
 ## Install (local)

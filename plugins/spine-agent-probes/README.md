@@ -1,6 +1,6 @@
 # spine-agent-probes
 
-Cursor plugin (Spine): **`-AgentSummary`** one-line outcomes and **`-Json`**
+Cursor plugin (Spine Framework): **`-AgentSummary`** one-line outcomes and **`-Json`**
 envelope convention for allowlist-safe PowerShell helpers.
 
 ## Install (local)

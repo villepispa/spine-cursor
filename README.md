@@ -64,10 +64,11 @@ date promise): `spine-completion-evidence`, `spine-task-decomposition`, and a
 re-export of wave-1 rules after the private lab has moved. Those slices land
 in later tags, not as a silent overwrite of 0.3.2.
 
-## Honest gap vs a private Spine lab
+## Honest gap vs a private lab
 
 This tree is a **slice**, not a dump of anyone's private `.cursor` workspace.
-You do **not** get audit logs, plan files, shell allowlists, live MCP configs,
+The public umbrella is **Spine Framework**; product ids stay `spine-*`. You do
+**not** get audit logs, plan files, shell allowlists, live MCP configs,
 exam-mode course policy, or the always-apply rule set that has moved since the
 last export. Wave-1 plugins here can lag the author's private sources. Local
 clone + symlink stays a supported install path even after a Marketplace

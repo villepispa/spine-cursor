@@ -1,6 +1,6 @@
 # spine-config-gate
 
-Cursor plugin (Spine wave 1): **Sphinx gate** checklist before committing
+Cursor plugin (Spine Framework wave 1): **Sphinx gate** checklist before committing
 substantial changes to rules, skills, agents, docs, templates, commands, or hooks.
 
 ## Install (local)
