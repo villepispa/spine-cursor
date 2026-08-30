@@ -11,11 +11,12 @@ versioning aligns with [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 - **Family marketplace mark (OSS-016)** — canonical teal `assets/logo.svg`
   copied into each plugin `assets/` and referenced as `logo` in the four
-  `plugin.json` manifests and marketplace entries. Raster companion:
-  `assets/logo.png`. PCB batch `2026-08-29_spine-marketplace-logo`.
-  Ville chose teal over the white log-row variant (2026-08-29). Unused
-  alts remain at repo root only: `assets/logo-white.svg`,
-  `assets/logo-alt-logrows.png`.
+  `plugin.json` manifests and marketplace entries. Raster companion
+  `assets/logo.png` regenerated from that SVG (2026-08-30); plugin folders
+  ship SVG only. Unused white alts and the prior AI raster moved to
+  `_archive/2026-08-30_logo-raster-from-svg/` (gitignored). PCB batch
+  `2026-08-29_spine-marketplace-logo`. Ville chose teal over the white
+  log-row variant (2026-08-29).
 
 ### Changed
 
