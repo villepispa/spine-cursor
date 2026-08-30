@@ -1,7 +1,7 @@
-# Spine — issue register
+# Spine Framework — issue register
 
 This register tracks actionable findings and shipped product work for the
-public Spine documentation tree (lane A). Prefer stable `SPC-` identifiers in
+public Spine Framework documentation tree (lane A). Prefer stable `SPC-` identifiers in
 commits, release notes, and related product docs.
 
 ## Workflow

@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to this public Spine documentation tree are recorded here.
+All notable changes to this public Spine Framework documentation tree are recorded here.
 
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/);
 versioning aligns with [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -20,6 +20,9 @@ versioning aligns with [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ### Changed
 
+- **Public umbrella (OSS-026)** — Display name is **Spine Framework** (README
+  H1, marketplace description, issue register, framework overview). Product
+  and plugin ids stay `spine-*`. Not a rename of GitHub `spine-cursor`.
 - **README mark size** — GitHub README now uses `<img width="128" height="128">`
   so the SVG does not fill the article column. `logo.svg` has intrinsic
   `width`/`height` 512 (viewBox was already 512).

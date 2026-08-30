@@ -1,8 +1,8 @@
-# Spine
+# Spine Framework
 
-<img src="assets/logo.svg" width="128" height="128" alt="Spine">
+<img src="assets/logo.svg" width="128" height="128" alt="Spine Framework">
 
-**Spine** is an AI-agent-friendly software development practice framework:
+**Spine Framework** is an AI-agent-friendly software development practice framework:
 principles, governance contracts, and adaptation guidance for teams that use
 coding agents (Cursor and similar) with an honest audit trail.
 
@@ -31,7 +31,7 @@ stays private — **slice, don't lift**.
 ### Cursor Marketplace (after listing)
 
 1. Open **Customize** in the sidebar.
-2. Find the Spine plugins (`spine-agent-file-operations`, `spine-agent-probes`,
+2. Find the Spine Framework plugins (`spine-agent-file-operations`, `spine-agent-probes`,
    `spine-logging-governance`, `spine-config-gate`).
 3. Choose **Install** and pick a **scope**:
    - **User** — follows you across every project. Use when these governance

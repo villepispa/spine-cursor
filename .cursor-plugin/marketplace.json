@@ -4,7 +4,7 @@
     "name": "Ville Pispa"
   },
   "metadata": {
-    "description": "Spine — AI-agent governance primitives for Cursor (file ops, probes, logging, config gate)",
+    "description": "Spine Framework — AI-agent governance primitives for Cursor (file ops, probes, logging, config gate)",
     "version": "0.3.2",
     "pluginRoot": "plugins"
   },

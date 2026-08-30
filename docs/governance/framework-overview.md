@@ -9,13 +9,13 @@ framework:
   status: active
 ---
 
-# Framework overview — Spine
+# Framework overview — Spine Framework
 
 > **Public subset (v0.1).** This file is a redacted export for external readers.
 > The private lab may carry a larger member inventory; this repo lists only what
 > ships here. Broken private-path links are intentionally omitted.
 
-**Audience:** Humans and agents adopting Spine. **Scope:** The meta-layer that
+**Audience:** Humans and agents adopting Spine Framework. **Scope:** The meta-layer that
 names the documentation framework, declares its axes, enumerates members in
 this public tree, and states the rules for adding, retiring, and bridging
 members.
