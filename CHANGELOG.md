@@ -20,6 +20,12 @@ versioning aligns with [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ### Changed
 
+- **Family mark (OSS-016)** — Redesigned for **Spine Framework**: inset teal
+  frame (framework) and a left audit gutter into four practice layers. Same
+  navy/teal tile; not staggered vertebrae. Canonical `assets/logo.svg` copied
+  to each plugin. Intrinsic 512×512. Raster `assets/logo.png` regenerated
+  from that SVG (2026-08-31; SHA-256 `E24D3830…`). Plugin folders ship SVG
+  only.
 - **Public umbrella (OSS-026 / OSS-016)** — Display name is **Spine Framework**
   (README H1, marketplace description, issue register, framework overview,
   plugin README one-liners). Product and plugin ids stay `spine-*`. Not a
