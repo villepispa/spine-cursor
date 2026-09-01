@@ -18,7 +18,7 @@ Reload the Cursor window.
 | Path | Role |
 |------|------|
 | `rules/sphinx-gate.mdc` | Gate checklist (conflict, coverage, format, scope, …) |
-| `agents/setup-buddy-lite.md` | Short agent: gate + PCB reminder |
+| `agents/loom-lite.md` | Short agent (**Loom**): gate + PCB reminder |
 
 ## Soft dependencies
 

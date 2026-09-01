@@ -20,6 +20,9 @@ versioning aligns with [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ### Changed
 
+- **`loom-lite` agent** — `spine-config-gate` agent id and file renamed
+  `setup-buddy-lite` → `loom-lite`. Persona matches private **Loom**.
+  Released `0.2.0` still shipped the old id.
 - **Family mark (OSS-016)** — Redesigned for **Spine Framework**: inset teal
   frame (framework) and a left audit gutter into four practice layers. Same
   navy/teal tile; not staggered vertebrae. Canonical `assets/logo.svg` copied
