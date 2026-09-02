@@ -15,6 +15,13 @@ commits, release notes, and related product docs.
 
 _(None.)_
 
+## Resolved issues (2026-09-02 — v0.4.0)
+
+| ID | Summary | Evidence |
+|----|---------|----------|
+| SPC-007 | Rename `spine-config-gate` agent `setup-buddy-lite` → `loom-lite` | `plugins/spine-config-gate/agents/loom-lite.md`; plugin `0.1.1`; `CHANGELOG.md` 0.4.0 |
+| SPC-006 | Spine Framework umbrella, family marketplace mark, Marketplace prep | `assets/logo.svg`; `.cursor-plugin/marketplace.json`; `README.md`; `CHANGELOG.md` 0.4.0 |
+
 ## Resolved issues (2026-08-21 — v0.3.2)
 
 | ID | Summary | Evidence |
@@ -48,6 +55,8 @@ _(None.)_
 ## Activity
 
 <!-- ISSUES-ACTIVITY+ -->
+- **2026-09-02 07:40:00** — Released `0.4.0` (`SPC-006` family mark + Spine Framework umbrella; `SPC-007` `loom-lite`; plugin `0.1.1`).
+- **2026-09-02 07:35:00** — Resolved `SPC-007` (`setup-buddy-lite` → `loom-lite`) and `SPC-006` (umbrella + marketplace mark).
 - **2026-08-21 20:15:00** — Released `0.3.2` (`SPC-005` probe envelope evidence ≠ accept; plugin `0.1.1`).
 - **2026-08-20 22:10:00** — Resolved `SPC-005` (probe envelope evidence ≠ accept; optional `criteriaHash` / `contractId`; plugin `0.1.1`).
 - **2026-07-27 11:24:00** — Released `0.3.1` (`SPC-004` Related → spine-automation).

@@ -10,7 +10,7 @@ This public repository ships **lane A** (framework docs) and **lane B** Cursor
 Marketplace plugins (wave 1 plus `spine-agent-probes`). Private lab material
 stays private — **slice, don't lift**.
 
-## What's in this repo (v0.3)
+## What's in this repo (v0.4)
 
 | Path | Role |
 |------|------|
@@ -23,7 +23,7 @@ stays private — **slice, don't lift**.
 | [`plugins/spine-agent-file-operations/`](plugins/spine-agent-file-operations/) | File-ops rule + skills (`0.1.0`) |
 | [`plugins/spine-agent-probes/`](plugins/spine-agent-probes/) | `-AgentSummary` / `-Json` probe contract + skill (`0.1.1`) |
 | [`plugins/spine-logging-governance/`](plugins/spine-logging-governance/) | Logging rule + skill + empty log templates |
-| [`plugins/spine-config-gate/`](plugins/spine-config-gate/) | Sphinx gate rule + lite agent |
+| [`plugins/spine-config-gate/`](plugins/spine-config-gate/) | Sphinx gate rule + `loom-lite` agent (`0.1.1`) |
 | [`LICENSE`](LICENSE) | MIT |
 
 ## Install
@@ -62,7 +62,7 @@ config-gate.
 This tag ships wave-1 plugins plus `spine-agent-probes`. Later extracts (no
 date promise): `spine-completion-evidence`, `spine-task-decomposition`, and a
 re-export of wave-1 rules after the private lab has moved. Those slices land
-in later tags, not as a silent overwrite of 0.3.2.
+in later tags, not as a silent overwrite of 0.4.0.
 
 ## Honest gap vs a private lab
 

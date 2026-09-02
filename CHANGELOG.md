@@ -7,40 +7,36 @@ versioning aligns with [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ## [Unreleased]
 
+_Nothing queued — latest release: **0.4.0**._
+
+## [0.4.0] — 2026-09-02
+
 ### Added
 
-- **Family marketplace mark (OSS-016)** — canonical teal `assets/logo.svg`
+- **Family marketplace mark (`SPC-006`)** — canonical teal `assets/logo.svg`
   copied into each plugin `assets/` and referenced as `logo` in the four
   `plugin.json` manifests and marketplace entries. Raster companion
-  `assets/logo.png` regenerated from that SVG (2026-08-30); plugin folders
-  ship SVG only. Unused white alts and the prior AI raster moved to
-  `_archive/2026-08-30_logo-raster-from-svg/` (gitignored). PCB batch
-  `2026-08-29_spine-marketplace-logo`. Ville chose teal over the white
-  log-row variant (2026-08-29).
+  `assets/logo.png` regenerated from that SVG; plugin folders ship SVG only.
 
 ### Changed
 
-- **`loom-lite` agent** — `spine-config-gate` agent id and file renamed
-  `setup-buddy-lite` → `loom-lite`. Persona matches private **Loom**.
-  Released `0.2.0` still shipped the old id.
-- **Family mark (OSS-016)** — Redesigned for **Spine Framework**: inset teal
-  frame (framework) and a left audit gutter into four practice layers. Same
-  navy/teal tile; not staggered vertebrae. Canonical `assets/logo.svg` copied
-  to each plugin. Intrinsic 512×512. Raster `assets/logo.png` regenerated
-  from that SVG (2026-08-31; SHA-256 `E24D3830…`). Plugin folders ship SVG
-  only.
-- **Public umbrella (OSS-026 / OSS-016)** — Display name is **Spine Framework**
+- **`loom-lite` agent (`SPC-007`)** — `spine-config-gate` agent id and file
+  renamed `setup-buddy-lite` → `loom-lite`. Plugin `0.1.1`. Released `0.2.0`
+  still shipped the old id.
+- **Family mark (`SPC-006`)** — Redesigned for **Spine Framework**: inset teal
+  frame and a left audit gutter into four practice layers. Intrinsic 512×512.
+  Raster `assets/logo.png` SHA-256 `E24D3830…`. Plugin folders ship SVG only.
+- **Public umbrella (`SPC-006`)** — Display name is **Spine Framework**
   (README H1, marketplace description, issue register, framework overview,
   plugin README one-liners). Product and plugin ids stay `spine-*`. Not a
   rename of GitHub `spine-cursor`.
-- **README mark size** — GitHub README now uses `<img width="128" height="128">`
-  so the SVG does not fill the article column. `logo.svg` has intrinsic
-  `width`/`height` 512 (viewBox was already 512).
-- **Marketplace prep (OSS-016)** — Root README documents user vs project vs
+- **README mark size (`SPC-006`)** — GitHub README uses
+  `<img width="128" height="128">`. `logo.svg` has intrinsic `width`/`height`
+  512.
+- **Marketplace prep (`SPC-006`)** — Root README documents user vs project vs
   team install scope, wave-2 (not in this tag), and the honest gap vs a private
-  Spine lab. `marketplace.json` `metadata.version` aligned to **0.3.2**. Skill
-  `name` frontmatter added on three `SKILL.md` files (file-ops, logging,
-  agent-summary-probe-contract) for Marketplace review.
+  Spine lab. `marketplace.json` `metadata.version` aligned to **0.4.0**. Skill
+  `name` frontmatter added on three `SKILL.md` files for Marketplace review.
 
 ## [0.3.2] — 2026-08-21
 

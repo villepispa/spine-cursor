@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Spine Framework — AI-agent governance primitives for Cursor (file ops, probes, logging, config gate)",
-    "version": "0.3.2",
+    "version": "0.4.0",
     "pluginRoot": "plugins"
   },
   "plugins": [

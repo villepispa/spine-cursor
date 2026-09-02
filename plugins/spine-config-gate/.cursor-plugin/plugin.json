@@ -1,6 +1,6 @@
 {
   "name": "spine-config-gate",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Sphinx gate — conflict/coverage/format/scope checklist before committing rules, skills, or agents",
   "author": {
     "name": "Ville Pispa"
