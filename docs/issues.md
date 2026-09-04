@@ -13,7 +13,9 @@ commits, release notes, and related product docs.
 
 ## Open issues
 
-_(None.)_
+| ID | Summary | Status |
+|----|---------|--------|
+| SPC-008 | GitHub Actions `virustotal-release-scan` + repo secret | In progress — G1 local; secret listed; needs G2 push |
 
 ## Resolved issues (2026-09-02 — v0.4.0)
 
