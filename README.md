@@ -10,11 +10,12 @@ This public repository ships **lane A** (framework docs) and **lane B** Cursor
 Marketplace plugins (wave 1 plus `spine-agent-probes`). Private lab material
 stays private — **slice, don't lift**.
 
-## What's in this repo (v0.4)
+## What's in this repo (v0.5)
 
 | Path | Role |
 |------|------|
 | [`docs/governance/framework-overview.md`](docs/governance/framework-overview.md) | Spine identity, axes, front-matter contract |
+| [`docs/governance/practice-framework.md`](docs/governance/practice-framework.md) | Kind of artefact (not methodology / not CMMI) |
 | [`docs/governance/framework-contributing.md`](docs/governance/framework-contributing.md) | Add / retire / rename checklist |
 | [`docs/principles/ai-governance-principles.md`](docs/principles/ai-governance-principles.md) | Memory, sealing, attribution, accountability |
 | [`docs/framework-manifest.yml`](docs/framework-manifest.yml) | Trimmed inventory of exported members only |
@@ -62,17 +63,32 @@ config-gate.
 This tag ships wave-1 plugins plus `spine-agent-probes`. Later extracts (no
 date promise): `spine-completion-evidence`, `spine-task-decomposition`, and a
 re-export of wave-1 rules after the private lab has moved. Those slices land
-in later tags, not as a silent overwrite of 0.4.0.
+in later tags, not as a silent overwrite of 0.5.0.
 
 ## Honest gap vs a private lab
 
 This tree is a **slice**, not a dump of anyone's private `.cursor` workspace.
+Spine is a **practice framework**, not CMMI and not a maturity program.
 The public umbrella is **Spine Framework**; product ids stay `spine-*`. You do
 **not** get audit logs, plan files, shell allowlists, live MCP configs,
 exam-mode course policy, or the always-apply rule set that has moved since the
 last export. Wave-1 plugins here can lag the author's private sources. Local
 clone + symlink stays a supported install path even after a Marketplace
 listing.
+
+## Validate
+
+From the repo root (Node 18+):
+
+```text
+node scripts/validate-template.mjs
+```
+
+This is the Cursor [plugin-template](https://github.com/cursor/plugin-template)
+marketplace validator, vendored locally so maintainers do not pipe a remote
+script into Node. The copy skips `_archive` directories (PCB snapshots are not
+plugin components). Warnings for missing `hooks/hooks.json` and `mcp.json` are
+expected — these plugins do not ship hooks or MCP servers. Errors must be zero.
 
 ## Documentation
 

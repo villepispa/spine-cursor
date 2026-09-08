@@ -1,5 +1,6 @@
 {
   "name": "spine-logging-governance",
+  "displayName": "Spine Logging Governance",
   "version": "0.1.0",
   "description": "Agent and auto-approval logging discipline (AL/AAL) with sentinel table patterns",
   "author": {

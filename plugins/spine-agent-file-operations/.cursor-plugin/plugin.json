@@ -1,5 +1,6 @@
 {
   "name": "spine-agent-file-operations",
+  "displayName": "Spine File Operations",
   "version": "0.1.0",
   "description": "Agent file-operations discipline — prefer Read/Grep/Write/StrReplace over Shell for edits",
   "author": {

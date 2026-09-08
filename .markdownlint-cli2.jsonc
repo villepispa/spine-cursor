@@ -1,0 +1,11 @@
+{
+  "config": {
+    "extends": ".markdownlint.json"
+  },
+  "ignores": [
+    ".cursor/**",
+    "_archive/**",
+    "**/_archive/**",
+    "plugins/*/_archive/**"
+  ]
+}

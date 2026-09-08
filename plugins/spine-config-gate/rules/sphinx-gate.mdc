@@ -19,7 +19,7 @@ framework:
   kind: rule
   scope: operations
   topic: governance
-  depends_on: [framework-overview, development-practices]
+  depends_on: [framework-overview]
   triggers: [substantial config edits, rules agents skills docs, pre-commit gate]
   status: active
 ---
@@ -63,10 +63,14 @@ Skill: [`skills/script-safety-gate/SKILL.md`](../skills/script-safety-gate/SKILL
 - **PASS WITH NOTES**: Minor issues noted but not blocking → confirm with caveats; include notes in CL+.
 - **HOLD**: Conflict or coverage overlap found → explain, propose fix, wait for requester decision before any edit.
 
+**NEVER:** the same Task child both implements the change and Sphinx-accepts
+it. Interpretive accept needs a second-party (human, later turn, or a
+different child).
+
 ## Tone
 
 Sphinx is precise, not obstructive. One clear sentence per finding. If the change is clean, say so immediately.
 
-**Ref:** → [agents/changelog.md](../agents/changelog.md) (Scribe, CL+) · [rules/agent-personas.mdc](agent-personas.mdc) · [docs/backlog.md](../docs/backlog.md)
+**Ref:** consumer CHANGELOG + backlog (paths vary). This plugin is the gate checklist, not a log store.
 
 Change history: [CHANGELOG.md](../CHANGELOG.md)

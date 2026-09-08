@@ -111,11 +111,11 @@ When `$SrcRoot` has immediate children `01`…`14`:
 - **Compound** scripts (`;`, `if`, `$LASTEXITCODE`, loops): one **`pwsh -NoProfile -Command "…"`** or **`pwsh -File script.ps1`**, per [agent-file-operations.mdc](../../rules/agent-file-operations.mdc).
 - Escape **`$`** for nested hosts: `` `$var ``.
 - Heavy **`New-Object`** / long logic: **temp `.ps1` + `pwsh -File`** — last resort, but legitimate for audit scripts.
-- **File size:** `Get-Item -LiteralPath "…" | Select-Object -ExpandProperty Length` (allowlisted prefix `Get-Item`). Avoid `(Get-Item "…").Length` — leading `(` breaks prefix match → **Run** prompt. [cursor-command-allowlist.md §1](../../docs/agent/cursor-command-allowlist.md) (*parenthesized expression problem*).
+- **File size:** `Get-Item -LiteralPath "…" | Select-Object -ExpandProperty Length` (allowlisted prefix `Get-Item`). Avoid `(Get-Item "…").Length` — leading `(` breaks prefix match → **Run** prompt. [agent-cursor-command-allowlist.md §1](../../docs/agent/agent-cursor-command-allowlist.md) (*parenthesized expression problem*).
 
 ### Allowlist gaps — Windows toolchain probes
 
-Read-only checks (`where.exe`, **`cd … && …`**, **`cd … && python -c …`**, **`& 'C:\msys64\ucrt64\bin\qmake.exe' -version`**) often **prompt** because the command prefix is not on `terminalAllowlist`, or because **compound** lines are tokenized per segment. Canonical table, mitigations, and **Ask every time** caveat → [cursor-command-allowlist.md §1 — *Known gaps — Windows toolchain discovery (agents)*](../../docs/agent/cursor-command-allowlist.md).
+Read-only checks (`where.exe`, **`cd … && …`**, **`cd … && python -c …`**, **`& 'C:\msys64\ucrt64\bin\qmake.exe' -version`**) often **prompt** because the command prefix is not on `terminalAllowlist`, or because **compound** lines are tokenized per segment. Canonical table, mitigations, and **Ask every time** caveat → [agent-cursor-command-allowlist.md §1 — *Known gaps — Windows toolchain discovery (agents)*](../../docs/agent/agent-cursor-command-allowlist.md).
 
 **Shortcuts:**
 
@@ -186,5 +186,5 @@ Fetch stays **user-gated** (`curl.exe` / browser) — do **not** ask for a catal
 
 - Tool choice and NEVER list → [agent-file-operations.mdc](../../rules/agent-file-operations.mdc)
 - Long-form edge cases → [agent-file-operations-guide.md](../../docs/agent/agent-file-operations-guide.md)
-- Allowlist prefix matching, compound commands, toolchain + **`python -c`** gaps → [cursor-command-allowlist.md](../../docs/agent/cursor-command-allowlist.md) (§1 *Known gaps — Windows toolchain discovery*)
+- Allowlist prefix matching, compound commands, toolchain + **`python -c`** gaps → [agent-cursor-command-allowlist.md](../../docs/agent/agent-cursor-command-allowlist.md) (§1 *Known gaps — Windows toolchain discovery*)
 - Git sync, overwrite prompts, week policy → [version-management SKILL](../version-management/SKILL.md)

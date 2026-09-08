@@ -1,0 +1,5 @@
+# Generated / lab output
+.cursor/
+_archive/
+**/_archive/
+plugins/*/_archive/

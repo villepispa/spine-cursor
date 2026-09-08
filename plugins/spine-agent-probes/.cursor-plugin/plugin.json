@@ -1,5 +1,6 @@
 {
   "name": "spine-agent-probes",
+  "displayName": "Spine Agent Probes",
   "version": "0.1.1",
   "description": "PowerShell -AgentSummary and -Json probe contract for Cursor agents",
   "author": {

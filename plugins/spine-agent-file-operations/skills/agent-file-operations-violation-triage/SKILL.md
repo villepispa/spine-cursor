@@ -39,7 +39,7 @@ Ask or extract from the user message:
 | Field | Why |
 |--------|-----|
 | **What happened** | Observed agent behavior (commands, tools, sequence). |
-| **Evidence** | Transcript path, chat excerpt, screenshot, or copy of Shell lines. Include the confirmation UI **Reason** line when the report is about unexpected **Run** prompts (`Not in allowlist: …` → [cursor-command-allowlist.md § 1](../../docs/agent/cursor-command-allowlist.md)). |
+| **Evidence** | Transcript path, chat excerpt, screenshot, or copy of Shell lines. Include the confirmation UI **Reason** line when the report is about unexpected **Run** prompts (`Not in allowlist: …` → [agent-cursor-command-allowlist.md § 1](../../docs/agent/agent-cursor-command-allowlist.md)). |
 | **Workspace** | `.cursor` config repo vs course repo vs other (affects `.gitignore` §0). |
 | **Approx. date / Cursor version** | If known — helps correlate with rule versions. |
 
@@ -58,7 +58,7 @@ If evidence is missing, **still** deliver the analysis template with a **Needs i
 4. **Decide corrections** (only when justified):
    - **Guide** — clarify edge cases, add one example, fix contradictions; keep concise (token budget).
    - **Rule** — only if alwaysApply decision tree is missing a high-leverage line the violation proves necessary; avoid large rule bloat.
-   - **Related doc** — for example [cursor-command-allowlist.md](../../docs/agent/cursor-command-allowlist.md), [agent-file-operations/SKILL.md](../agent-file-operations/SKILL.md), [logging/SKILL.md](../logging/SKILL.md) for sentinel rows.
+   - **Related doc** — for example [agent-cursor-command-allowlist.md](../../docs/agent/agent-cursor-command-allowlist.md), [agent-file-operations/SKILL.md](../agent-file-operations/SKILL.md), [logging/SKILL.md](../logging/SKILL.md) for sentinel rows.
 5. **If editing docs:** follow normal config hygiene (PCB if multi-file substantive change, CL+, backlog when tied to a story, `Invoke-FrameworkManifestValidate.ps1` if manifest touched). **If not editing:** still complete the user report.
 
 ## Known recurrence classes
@@ -121,4 +121,4 @@ If you edited any file (guide, rule, or triage log): append **AL** per [logging/
 ## Escalation
 
 - Repeated **spec conflicts** between rule and guide: file or update a **CFG** backlog story under *Agent file-operations compliance* and link the plan if one exists.
-- Suspected **allowlist** or **sandbox** product issue: separate from this skill; point to `docs/agent/cursor-command-allowlist.md` and IDE theme stories as appropriate.
+- Suspected **allowlist** or **sandbox** product issue: separate from this skill; point to `docs/agent/agent-cursor-command-allowlist.md` and IDE theme stories as appropriate.

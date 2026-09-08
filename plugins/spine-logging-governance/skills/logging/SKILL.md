@@ -10,14 +10,15 @@ framework:
   kind: skill
   scope: operations
   topic: change-management
-  depends_on: [logging, logs-principles, framework-overview]
+  depends_on: [logging, framework-overview]
   triggers: [logging SKILL, AL AAL schemas]
   status: active
 ---
 
 # Logging skill
 
-**Principles:** [logs-principles.md](../../docs/principles/logs-principles.md)
+**Principles:** [ai-governance-principles.md](../../../docs/principles/ai-governance-principles.md)
+— why AL, AAL, chat log, and changelog exist as traceability artefacts.
 — why AL, AAL, chat log, VM logs, and CL+ exist as traceability artefacts.
 
 **Where/how** to **AL** and **AAL**. **MUST:** append readable rows so user/auditor sees what, who, why.
@@ -177,7 +178,7 @@ When action is auto-approved: **in addition to AL**, append AAL.
 
 `| When | Scope | Agent | Action | What | Reason (Config | User requested | Agent decision) | Reference |`
 
-Append-only (no deletion of existing rows). Corrections / reclassifications go in-place in the **Reason** cell with a `[reclassified YYYY-MM-DD: …]` annotation; the original row is **not** deleted (per [logs-principles § 3](../../docs/principles/logs-principles.md)).
+Append-only (no deletion of existing rows). Corrections / reclassifications go in-place in the **Reason** cell with a `[reclassified YYYY-MM-DD: …]` annotation; the original row is **not** deleted.
 
 ### Example AAL row (Tier 1 auto-insert)
 

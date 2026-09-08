@@ -7,8 +7,22 @@ versioning aligns with [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ## [Unreleased]
 
+_Nothing queued — latest release: **0.5.0**._
+
+## [0.5.0] — 2026-09-08
+
 ### Added
 
+- **Lane A catch-up (`SPC-010`)** — Catalog `framework_version: "0.1"` (not
+  product SemVer); status is lifecycle only; `kind: template`;
+  `practice-framework.md` (not CMMI). Wave-1 plugin rules re-exported with
+  allowlist filename `agent-cursor-command-allowlist.md` and Sphinx dual-role
+  NEVER. Wave-2 plugins deferred.
+- **Plugin-template polish (`SPC-009`)** — `displayName` on the four
+  `plugin.json` manifests; vendored `scripts/validate-template.mjs` from
+  [cursor/plugin-template](https://github.com/cursor/plugin-template) (local
+  delta: skip `_archive`); README **Validate** section. Expected validator
+  warnings: no `hooks.json` / `mcp.json`.
 - **Release URL scan (`SPC-008`)** — GitHub Actions `virustotal-release-scan`
   on `release: published` (repo secret `VIRUSTOTAL_API_KEY`; never committed).
 

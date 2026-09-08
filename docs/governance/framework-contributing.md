@@ -11,8 +11,9 @@ framework:
 
 # Framework contributing — add, retire, rename
 
-> **Public subset (v0.1).** Checklist for keeping overview + manifest in sync
-> in this repository. Private labs may add tooling paths not present here.
+> **Public subset (catalog `0.1`).** Checklist for keeping overview + manifest
+> in sync in this repository. Private labs may add tooling paths not present
+> here.
 
 **Audience:** Anyone (human or agent) proposing to change the framework's
 member list. **Scope:** Mechanical checklist for
@@ -32,7 +33,8 @@ A new doc joins the framework only if **all three** apply:
 1. It addresses one of the **declared concerns** in
    [framework-overview.md § 3.1](framework-overview.md) (or proposes a new
    concern; see § 5 below).
-2. It will be **referenced by other framework members** — not a leaf.
+2. It will be **referenced by other framework members** — not a leaf. (A
+   public slice may still list a catalogued leaf that routes readers.)
 3. It can articulate a **token-cost case** (it lowers per-turn cost by
    centralizing what would otherwise be repeated, or it routes agents to the
    right place faster).
@@ -62,21 +64,47 @@ PowerShell 7. Do **not** use `Measure-Object -Line` (undercounts blank lines).
 
 ---
 
+## 1.8 `framework_version` (catalog label)
+
+The inventory root field `framework_version` in
+[framework-manifest.yml](../framework-manifest.yml) is a **two-part catalog
+revision label** (`MAJOR.MINOR`, currently `"0.1"`). It names the membership
+contract this checklist assumes.
+
+**Covers:** front-matter axes and enums, and the inventory contract in
+[framework-overview.md](framework-overview.md).
+
+**Does not cover:** a SemVer product release, git tags, or this repository's
+Keep a Changelog versions (`0.4.0`, …). **NEVER:** treat `"0.1"` as a product
+SemVer claim.
+
+### When to bump
+
+| Change | Action |
+|--------|--------|
+| Front-matter / manifest **schema** (required field, enum, or validator contract that would fail a previously valid inventory) | Bump **MINOR** (`0.1` → `0.2`). Record the migration in CHANGELOG. |
+| Membership **policy** that changes who is IN vs OUT | Bump **MINOR**. |
+| Add / retire / rename a member under existing rules; `size_lines`; body edits; typos | **Do not bump.** |
+
+Three-part strings (`0.1.0`) are **not** this catalog label.
+
+---
+
 ## 2. Add a member — checklist
 
 | # | Step | File touched |
 |---|------|--------------|
 | 1 | Choose **scope** (`core` / `bridge` / `adaptation` / `operations`). | — |
-| 2 | Choose **kind** (`principle`, `method`, `reference`, `rule`, `skill`, `agent`, `script`, `guide`). | — |
+| 2 | Choose **kind** (`principle`, `method`, `reference`, `rule`, `skill`, `agent`, `script`, `guide`, `template`). | — |
 | 3 | Pick a stable kebab-case **`id`**. | — |
 | 4 | Write the file body. Prefer principles ≤ 220 lines; methods ≤ 120. | new file |
-| 5 | Add YAML front-matter per [overview § 6](framework-overview.md). | new file |
-| 6 | Append a **manifest** entry with all required fields. | `docs/framework-manifest.yml` |
+| 5 | Add YAML front-matter per [overview § 6](framework-overview.md). Set `status` to a lifecycle value (`active` unless retiring or experimenting). **NEVER:** copy `scope` into `status`. | new file |
+| 6 | Append a **manifest** entry with all required fields. Do not bump `framework_version` for a routine add — § 1.8. | `docs/framework-manifest.yml` |
 | 7 | Update the **member list** in [overview § 7](framework-overview.md). | `docs/governance/framework-overview.md` |
 | 8 | Update the **grid** in [overview § 3.3](framework-overview.md) if needed. | same |
 | 9 | Add inbound links from at least **one** existing member. | varies |
 | 10 | Update root **README** with a one-line description. | `README.md` |
-| 11 | Append one **CHANGELOG** row. | `CHANGELOG.md` |
+| 11 | Append one **CHANGELOG** entry. | `CHANGELOG.md` |
 
 Framework changes that touch ≥ 3 files should use a written plan before
 implementation.
@@ -120,7 +148,8 @@ Never delete a framework member's file. History matters.
 
 - The **front-matter schema**.
 - The four **scope** values.
-- The **status** taxonomy ([overview § 4](framework-overview.md)).
+- The **status** taxonomy ([overview § 4](framework-overview.md) — lifecycle
+  only).
 
 Schema migrations need an explicit plan and CHANGELOG entry.
 
@@ -129,6 +158,7 @@ Schema migrations need an explicit plan and CHANGELOG entry.
 ## 7. See also
 
 - [framework-overview.md](framework-overview.md)
+- [practice-framework.md](practice-framework.md)
 - [framework-manifest.yml](../framework-manifest.yml)
 - [ai-governance-principles.md](../principles/ai-governance-principles.md)
 

@@ -11,17 +11,19 @@ framework:
 
 # Framework overview — Spine Framework
 
-> **Public subset (v0.1).** This file is a redacted export for external readers.
-> The private lab may carry a larger member inventory; this repo lists only what
-> ships here. Broken private-path links are intentionally omitted.
+> **Public subset (catalog `0.1`).** This file is a redacted export for
+> external readers. A private lab may carry a larger member inventory; this
+> repo lists only what ships here. Broken private-path links are omitted on
+> purpose.
 
-**Audience:** Humans and agents adopting Spine Framework. **Scope:** The meta-layer that
-names the documentation framework, declares its axes, enumerates members in
-this public tree, and states the rules for adding, retiring, and bridging
-members.
+**Audience:** Humans and agents adopting Spine Framework. **Scope:** The
+meta-layer that names the documentation framework, declares its axes,
+enumerates members in this public tree, and states the rules for adding,
+retiring, and bridging members.
 
 Cross-references: [framework-manifest.yml](../framework-manifest.yml),
 [framework-contributing.md](framework-contributing.md),
+[practice-framework.md](practice-framework.md),
 [ai-governance-principles.md](../principles/ai-governance-principles.md).
 
 ---
@@ -29,9 +31,10 @@ Cross-references: [framework-manifest.yml](../framework-manifest.yml),
 ## 1. Purpose
 
 The framework is an **AI-agent-friendly software development practice
-framework**. It is *not* a single methodology, *not* a single language stack,
-and *not* a single IDE binding. Members are reusable principles, methods,
-references, and operations docs that can be:
+framework**. Kind of artefact: [practice-framework.md](practice-framework.md).
+It is *not* a single methodology, *not* a single language stack, and *not* a
+single IDE binding. Members are reusable principles, methods, references, and
+operations docs that can be:
 
 - **Adapted** to any project, language, or course.
 - **Extended** with new concerns (axes) or scopes.
@@ -48,10 +51,11 @@ references, and operations docs that can be:
 
 ## 2. Name and identity
 
-**Working name (v1): Spine.** Single-syllable, evocative of structural
-support, language- and IDE-neutral.
+**Display umbrella:** **Spine Framework**. **Short name:** Spine. Product and
+plugin ids stay `spine-*`.
 
-The framework's **identity** rests on **three contracts**, not the name:
+The framework's **membership identity** rests on **three contracts**, not the
+name:
 
 1. Every member declares its **scope** and **topic** (front-matter).
 2. Every member is listed in the **manifest**.
@@ -84,11 +88,13 @@ at least:
 | **adaptation** | Workspace / course / product binding |
 | **operations** | Scripts, hooks, runbooks |
 
-### 3.3 Public occupancy (v0.1)
+Scope is **not** status. Do not copy a scope token into `status:`.
+
+### 3.3 Public occupancy (catalog `0.1`)
 
 | Concern | Principles / guides in this repo |
 |---------|----------------------------------|
-| governance | `framework-overview`, `framework-contributing`, `ai-governance-principles` |
+| governance | `framework-overview`, `framework-contributing`, `practice-framework`, `ai-governance-principles` |
 
 Further cells ship in later public waves.
 
@@ -96,20 +102,29 @@ Further cells ship in later public waves.
 
 ## 4. Status taxonomy
 
+Status is **lifecycle**, not a copy of **scope**. Scope
+(`core` / `bridge` / `adaptation` / `operations`) stays the portable-vs-local
+axis. Do not set `status` to a scope token.
+
 | Status | Meaning |
 |--------|---------|
-| `active` | Current contract |
-| `bridge` | Cross-cutting helper |
-| `adaptation` | Bound to a specific environment |
-| `deprecated` | Kept for history; successor named via `supersedes` |
-| `experimental` | May change without a migration plan |
+| `active` | Current and authoritative. |
+| `deprecated` | Retained for traceability; superseded by another member (`supersedes` on the successor). |
+| `experimental` | New, may change shape; rules and agents should not depend on it yet. |
+
+A `deprecated` member must keep its file (history) but should not be linked
+from `active` members except as a redirect note.
 
 ---
 
 ## 5. Member kinds
 
 `principle` · `method` · `reference` · `rule` · `skill` · `agent` · `script` ·
-`guide`
+`guide` · `template`
+
+`kind: template` is a copy-fill artefact (for example under `templates/`).
+`kind` is a membership taxonomy; it is not 1:1 with Diátaxis reader questions
+(tutorial / how-to / reference / explanation).
 
 ---
 
@@ -118,18 +133,28 @@ Further cells ship in later public waves.
 Every framework member markdown file opens with a YAML fence containing a
 `framework:` mapping:
 
-| Field | Required | Notes |
-|-------|----------|-------|
-| `id` | yes | Stable kebab-case; matches manifest |
-| `kind` | yes | See § 5 |
-| `scope` | yes | See § 3.2 |
-| `topic` | yes | Concern from § 3.1 |
-| `depends_on` | yes | List of other member `id`s (may be empty) |
-| `triggers` | yes | Short phrases for when to consult |
-| `status` | yes | See § 4 |
+```yaml
+---
+framework:
+  id: <stable-kebab-case-id>
+  kind: principle | method | reference | rule | skill | agent | script | guide | template
+  scope: core | bridge | adaptation | operations
+  topic: <single concern from § 3.1>
+  depends_on: [<id>, ...]
+  triggers: [<short phrase>, ...]
+  status: active | deprecated | experimental
+  supersedes: <id>   # optional
+---
+```
 
 Rules / skills / agents that are also framework members keep Cursor-native
 keys (`description`, `globs`, …) and add `framework:` in the **same** fence.
+
+The inventory-level **`framework_version`** lives on
+[framework-manifest.yml](../framework-manifest.yml) (currently `"0.1"`). It is
+a **catalog revision label**, not a SemVer product release and not the same
+artefact as this repository's Keep a Changelog tags (`0.4.0`, …). When to
+bump: [framework-contributing.md § 1.8](framework-contributing.md).
 
 ---
 
@@ -139,10 +164,12 @@ keys (`description`, `globs`, …) and add `framework:` in the **same** fence.
 
 - [framework-overview.md](framework-overview.md) (this file)
 - [framework-contributing.md](framework-contributing.md)
+- [practice-framework.md](practice-framework.md)
 - [ai-governance-principles.md](../principles/ai-governance-principles.md)
 - [framework-manifest.yml](../framework-manifest.yml)
 
-Private labs may list dozens more members; they are **not** part of this export.
+Private labs may list dozens more members; they are **not** part of this
+export.
 
 ---
 
@@ -153,21 +180,26 @@ Full checklist: [framework-contributing.md](framework-contributing.md).
 - **Add** only when content does not already live in an existing member.
 - **Retire** with `status: deprecated` and `supersedes` on the successor —
   never delete history.
-- **Rename** `id` + path + inbound links in one change set; record in CHANGELOG.
+- **Rename** `id` + path + inbound links in one change set; record in
+  CHANGELOG.
 
 ---
 
-## 9. Out of scope (v0.1 public)
+## 9. Out of scope (public slice)
 
 - Full private workspace mirror
 - Live machine allowlists and MCP tokens
-- Marketplace plugin bundles (later phase)
 - Per-language example supplements and cross-IDE portability maps
+
+Marketplace plugins **do** ship in this repository (wave 1 plus
+`spine-agent-probes`). They are delivery slices, not the whole framework —
+[practice-framework.md](practice-framework.md).
 
 ---
 
 ## 10. See also
 
+- [practice-framework.md](practice-framework.md)
 - [framework-contributing.md](framework-contributing.md)
 - [ai-governance-principles.md](../principles/ai-governance-principles.md)
 - [framework-manifest.yml](../framework-manifest.yml)

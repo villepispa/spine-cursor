@@ -13,8 +13,6 @@ framework:
   topic: change-management
   depends_on:
     - framework-overview
-    - change-management-principles
-    - logs-principles
   triggers: [AL, AAL, cursor chat log, effectful actions, process friction]
   status: active
 ---
@@ -106,12 +104,9 @@ difficulty.
 
 ---
 
-**Ref:** [logging SKILL](../skills/logging/SKILL.md) · [log-writing-conventions.md](../docs/governance/log-writing-conventions.md) · [agents/changelog.md](../agents/changelog.md) (Scribe)
+**Ref:** [logging SKILL](../skills/logging/SKILL.md)
 
 ## See also
 
-- [logs-principles.md](../docs/principles/logs-principles.md) — principles layer
-  for AL, AAL, chat log, VM logs, and CL+ as traceability artefacts.
-- [ai-governance-principles.md](../docs/principles/ai-governance-principles.md) —
-  *why* AL/AAL/CL+ are the **honest substrate** of the workspace's audit story
-  (governance principle § 8 honest claim/honest gap; § 2 versioning ≠ sealing).
+- [ai-governance-principles.md](../../../docs/principles/ai-governance-principles.md) —
+  *why* AL/AAL/CL+ are the honest substrate of an audit story.

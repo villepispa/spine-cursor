@@ -13,9 +13,15 @@ commits, release notes, and related product docs.
 
 ## Open issues
 
-| ID | Summary | Status |
-|----|---------|--------|
-| SPC-008 | GitHub Actions `virustotal-release-scan` + repo secret | In progress — G1 local; secret listed; needs G2 push |
+_None._
+
+## Resolved issues (2026-09-08 — v0.5.0)
+
+| ID | Summary | Evidence |
+|----|---------|----------|
+| SPC-010 | Lane A catalog schema + wave-1 plugin catch-up; wave-2 deferred | `docs/framework-manifest.yml`; `docs/governance/practice-framework.md`; wave-1 plugin rules; `CHANGELOG.md` 0.5.0 |
+| SPC-009 | Plugin-template polish: `displayName` + vendored validator | four `plugin.json`; `scripts/validate-template.mjs`; README Validate; `CHANGELOG.md` 0.5.0 |
+| SPC-008 | GitHub Actions `virustotal-release-scan` + repo secret | `.github/workflows/virustotal-release-scan.yml`; `CHANGELOG.md` 0.5.0 |
 
 ## Resolved issues (2026-09-02 — v0.4.0)
 
@@ -57,6 +63,9 @@ commits, release notes, and related product docs.
 ## Activity
 
 <!-- ISSUES-ACTIVITY+ -->
+- **2026-09-08 20:45:00** — Released `0.5.0` (`SPC-008` VirusTotal release scan; `SPC-009` plugin-template polish; `SPC-010` lane A catalog + wave-1 catch-up).
+- **2026-09-08 19:56:00** — Opened `SPC-010`: lane A catalog schema (`0.1`) + `practice-framework` + wave-1 plugin catch-up; wave-2 deferred.
+- **2026-09-05 16:45:00** — Opened `SPC-009`: `displayName` on four plugins + vendored `scripts/validate-template.mjs`.
 - **2026-09-02 07:40:00** — Released `0.4.0` (`SPC-006` family mark + Spine Framework umbrella; `SPC-007` `loom-lite`; plugin `0.1.1`).
 - **2026-09-02 07:35:00** — Resolved `SPC-007` (`setup-buddy-lite` → `loom-lite`) and `SPC-006` (umbrella + marketplace mark).
 - **2026-08-21 20:15:00** — Released `0.3.2` (`SPC-005` probe envelope evidence ≠ accept; plugin `0.1.1`).

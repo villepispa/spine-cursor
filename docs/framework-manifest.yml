@@ -1,12 +1,20 @@
 # Framework manifest (Spine) — public subset
 #
-# Trimmed inventory for the public GitHub export (lane A, v0.1.0).
+# Trimmed inventory for the public GitHub export (lane A).
 # Schema: docs/governance/framework-overview.md § 6
+#
+# framework_version is a two-part catalog revision label (MAJOR.MINOR),
+# not SemVer product and not this repo's Keep a Changelog tags.
+# When to bump: docs/governance/framework-contributing.md § 1.8.
 #
 # Private labs may carry a much larger member list; do not treat this file
 # as the full Spine inventory.
+#
+# kind:    principle | method | reference | rule | skill | agent | script | guide | template
+# scope:   core | bridge | adaptation | operations
+# status:  active | deprecated | experimental   (lifecycle only; not scope)
 
-framework_version: "0.1.0"
+framework_version: "0.1"
 
 members:
 
@@ -18,7 +26,17 @@ members:
     depends_on: []
     triggers: [adding a new framework member, onboarding a new agent, framework audit]
     status: active
-    size_lines: 160
+    size_lines: 211
+
+  - id: practice-framework
+    path: docs/governance/practice-framework.md
+    kind: guide
+    scope: core
+    topic: governance
+    depends_on: [framework-overview]
+    triggers: [practice framework, what is Spine, methodology vs framework, process framework, CMMI, maturity, onboarding a new agent]
+    status: active
+    size_lines: 133
 
   - id: framework-manifest
     path: docs/framework-manifest.yml
@@ -28,7 +46,7 @@ members:
     depends_on: [framework-overview]
     triggers: [routing by topic or scope, framework audit, manifest edits]
     status: active
-    size_lines: 55
+    size_lines: 75
 
   - id: framework-contributing
     path: docs/governance/framework-contributing.md
@@ -38,7 +56,7 @@ members:
     depends_on: [framework-overview]
     triggers: [adding a member, retiring a member, renaming a member]
     status: active
-    size_lines: 130
+    size_lines: 167
 
   - id: ai-governance-principles
     path: docs/principles/ai-governance-principles.md
@@ -53,4 +71,4 @@ members:
       - decision sealing
       - reproducibility metadata
     status: active
-    size_lines: 200
+    size_lines: 213
