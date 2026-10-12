@@ -73,7 +73,7 @@ or README § AI assistance).
 resolution: [logging SKILL § AAI](../skills/logging/SKILL.md). Bootstrap new
 long-lived workspaces from [`templates/ai-assistance-log-template.md`](../templates/ai-assistance-log-template.md).
 
-**Insertion**: `Grep "<!-- AAI+ -->"` → `StrReplace` sentinel + first data row. Newest first.
+**Insertion**: `Grep "<!-- AAI+ -->"` → `StrReplace` the newest row. The marker is `| <!-- AAI+ --> ` at the start of that row's When cell; move it onto the new row. Newest first. Do not leave the comment on its own line under the delimiter — GitHub then renders only the header.
 
 ## 5. Process-friction reports
 

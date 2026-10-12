@@ -3,7 +3,8 @@
 Human-readable disclosure trail for substantive AI-assisted work on the public
 Spine Framework documentation + plugin marketplace repository. Complements
 product `CHANGELOG.md` (release history) and the product-local
-`.cursor/agent-log.md` (per-turn agent mechanics). Newest-first at `<!-- AAI+ -->`.
+`.cursor/agent-log.md` (per-turn agent mechanics). Newest-first.
+The `<!-- AAI+ -->` marker stays in the newest row's When cell.
 
 **Note on private lab origin:** portions of the public plugins are sliced from
 a private Cursor config lab. Wave-1 extraction was AI-assisted; individual
@@ -11,8 +12,7 @@ private-source authorship is *not* AAI-tracked here.
 
 | When | Phase / scope | Deliverable | Tool / model | Purpose | Verified by |
 |------|---------------|-------------|--------------|---------|-------------|
-<!-- AAI+ -->
-| 2026-09-08 20:45:00 | 0.5.0 release (SPC-008/009/010) | Keep a Changelog 0.5.0; marketplace 0.5.0; issues resolved | Cursor Agent [Tier 2: cursor-grok-4.6] | Stream G1/G2 + annotated `v0.5.0` | Operator: this release |
+| <!-- AAI+ --> 2026-09-08 20:45:00 | 0.5.0 release (SPC-008/009/010) | Keep a Changelog 0.5.0; marketplace 0.5.0; issues resolved | Cursor Agent [Tier 2: cursor-grok-4.6] | Stream G1/G2 + annotated `v0.5.0` | Operator: this release |
 | 2026-09-08 20:39:00 | SPC-010 accept | Named accept of lane A + wave-1 catch-up | Cursor Agent [Tier 2: cursor-grok-4.6] | Close the public-slice catch-up; wave-2 stays later | Ville (user `accept`) ≠ Pulse |
 | 2026-09-08 19:56:00 | SPC-010 lane A + wave-1 catch-up | Catalog `0.1`; `practice-framework.md`; wave-1 plugin re-export; wave-2 deferred | Cursor Agent [Tier 2: cursor-grok-4.6] | Public schema + plugin slice after lab review | Pending named accept |
 | 2026-09-08 18:50:00 | Review vs private lab | Chat findings only (no public-tree edits that turn) | Cursor Agent [Tier 1: cursor-grok-4.6] | Check whether public `framework-manifest.yml` and plugins still match the private membership contract | Operator: that chat |

@@ -112,7 +112,7 @@ draft, major feature) — not every chat turn. Same turn as the matching AL row 
 **Tool / model cell:** `Cursor Agent [Tier N: model-slug]` — slug from slug reference;
 tier-only only when slug was not exposed (note in Purpose; backfill from transcripts when auditing).
 
-**Sentinel:** `<!-- AAI+ -->` — newest first; same StrReplace insertion pattern as AL.
+**Sentinel:** `<!-- AAI+ -->` at the start of the newest row's When cell: `| <!-- AAI+ --> YYYY-MM-DD HH:mm:ss | … |`. Newest first. Move the marker onto the new row. A lone comment line between the delimiter and the first data row ends the GitHub table (header only; body becomes a paragraph). If that lone line is still present, delete it in the same edit and put the marker in the When cell.
 
 ## Process-friction
 
@@ -188,7 +188,7 @@ Append-only (no deletion of existing rows). Corrections / reclassifications go i
 
 ## Insertion method — sentinel-based StrReplace
 
-Every log file has a unique HTML comment sentinel between the separator row and the first data row. Use it as the StrReplace anchor — zero terminal prompts.
+Every log file has a unique HTML comment sentinel between the separator row and the first data row. Use it as the StrReplace anchor — zero terminal prompts. Exception: `ai-assistance-log.md` keeps `<!-- AAI+ -->` in the newest row's When cell so GitHub renders the whole table.
 
 | Log / Table | Sentinel | Notes |
 |-------------|----------|-------|
@@ -198,7 +198,7 @@ Every log file has a unique HTML comment sentinel between the separator row and 
 | cursor-chat-log.md | `<!-- CHATLOG+ -->` | Newest first |
 | version-management-global-log.md | `<!-- VMLOG+ -->` | Newest first |
 | auto-approval-log*.md | `<!-- AAL+ -->` | Newest first |
-| ai-assistance-log.md (`logs/` or `docs/`) | `<!-- AAI+ -->` | Newest first; project disclosure |
+| ai-assistance-log.md (`logs/` or `docs/`) | `<!-- AAI+ -->` | Newest first; marker in the When cell (not a lone line under the delimiter) |
 | Project/subproject agent-log.md | `<!-- AL+ -->` | Newest first |
 | forum/cursor/issues/README.md status table | `<!-- ISSUES+ -->` | Newest first |
 | plans/README.md active table | `<!-- PLANS-ACTIVE+ -->` | Newest first |

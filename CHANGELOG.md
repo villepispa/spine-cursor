@@ -7,7 +7,20 @@ versioning aligns with [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ## [Unreleased]
 
-_Nothing queued — latest release: **0.5.0**._
+_Nothing queued — latest release: **0.5.1**._
+
+## [0.5.1] — 2026-10-12
+
+### Fixed
+
+- **AI assistance log:** `docs/ai-assistance-log.md` renders as one GitHub table.
+  The `<!-- AAI+ -->` marker sits in the newest row's When cell. A comment on
+  its own line under the header made GitHub show only the header.
+
+### Changed
+
+- **spine-logging-governance** plugin `0.1.0` → `0.1.1`. The logging rule and
+  skill keep the assistance-log marker in the newest row's When cell.
 
 ## [0.5.0] — 2026-09-08
 
