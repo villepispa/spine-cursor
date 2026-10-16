@@ -35,6 +35,7 @@ docs/_build/
 *.out
 
 # Local agent / Cursor machine state (never publish)
+.cursor/
 logs/
 plans/
 decision-seals/

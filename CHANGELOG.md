@@ -7,7 +7,10 @@ versioning aligns with [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ## [Unreleased]
 
-_Nothing queued — latest release: **0.5.1**._
+### Changed
+
+- **Git ignore:** `.cursor/` stays on the machine. Local agent logs and
+  version-management config are not part of the public tree.
 
 ## [0.5.1] — 2026-10-12
 
