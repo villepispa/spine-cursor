@@ -15,6 +15,11 @@ commits, release notes, and related product docs.
 
 _None._
 
+## Resolved issues (2026-10-12 — v0.5.1)
+
+No new `SPC-` id. Assistance-log table fix. `spine-logging-governance` plugin
+`0.1.1`.
+
 ## Resolved issues (2026-09-08 — v0.5.0)
 
 | ID | Summary | Evidence |
@@ -63,6 +68,7 @@ _None._
 ## Activity
 
 <!-- ISSUES-ACTIVITY+ -->
+- **2026-10-16 15:24:00** — Recorded `0.5.1` (assistance-log table; `spine-logging-governance` `0.1.1`). No new `SPC-` id.
 - **2026-09-08 20:45:00** — Released `0.5.0` (`SPC-008` VirusTotal release scan; `SPC-009` plugin-template polish; `SPC-010` lane A catalog + wave-1 catch-up).
 - **2026-09-08 19:56:00** — Opened `SPC-010`: lane A catalog schema (`0.1`) + `practice-framework` + wave-1 plugin catch-up; wave-2 deferred.
 - **2026-09-05 16:45:00** — Opened `SPC-009`: `displayName` on four plugins + vendored `scripts/validate-template.mjs`.
