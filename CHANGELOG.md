@@ -7,6 +7,13 @@ versioning aligns with [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ## [Unreleased]
 
+### Added
+
+- **Cursor Marketplace application (`SPC-011`)** — Publisher form submitted
+  2026-10-22. Cursor replied “Thanks for applying”; review follow-up comes
+  from `marketplace-publishing@cursor.com`. Website on the form is this
+  GitHub repository. The listing is not live until that review.
+
 ### Changed
 
 - **Git ignore:** `.cursor/` stays on the machine. Local agent logs and

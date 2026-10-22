@@ -12,7 +12,8 @@ private-source authorship is *not* AAI-tracked here.
 
 | When | Phase / scope | Deliverable | Tool / model | Purpose | Verified by |
 |------|---------------|-------------|--------------|---------|-------------|
-| <!-- AAI+ --> 2026-10-16 15:24:00 | Release register sync | docs/issues.md names 0.5.1 | Cursor Grok 4.7 [Tier 2: grok-4.7] | Keep the issue register aligned with tag v0.5.1 | Heading for 0.5.1; no new SPC id |
+| <!-- AAI+ --> 2026-10-22 11:20:00 | SPC-011 Marketplace application | Unreleased CHANGELOG + issues row | Cursor Agent [Tier 2: cursor-grok-4.6] | Record Cursor “Thanks for applying”; Website = this GitHub repo | Operator: submitted the form |
+| 2026-10-16 15:24:00 | Release register sync | docs/issues.md names 0.5.1 | Cursor Grok 4.7 [Tier 2: grok-4.7] | Keep the issue register aligned with tag v0.5.1 | Heading for 0.5.1; no new SPC id |
 | 2026-09-08 20:45:00 | 0.5.0 release (SPC-008/009/010) | Keep a Changelog 0.5.0; marketplace 0.5.0; issues resolved | Cursor Agent [Tier 2: cursor-grok-4.6] | Stream G1/G2 + annotated `v0.5.0` | Operator: this release |
 | 2026-09-08 20:39:00 | SPC-010 accept | Named accept of lane A + wave-1 catch-up | Cursor Agent [Tier 2: cursor-grok-4.6] | Close the public-slice catch-up; wave-2 stays later | Ville (user `accept`) ≠ Pulse |
 | 2026-09-08 19:56:00 | SPC-010 lane A + wave-1 catch-up | Catalog `0.1`; `practice-framework.md`; wave-1 plugin re-export; wave-2 deferred | Cursor Agent [Tier 2: cursor-grok-4.6] | Public schema + plugin slice after lab review | Pending named accept |

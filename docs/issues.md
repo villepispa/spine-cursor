@@ -13,7 +13,9 @@ commits, release notes, and related product docs.
 
 ## Open issues
 
-_None._
+| ID | Summary | Status |
+|----|---------|--------|
+| SPC-011 | Cursor Marketplace publisher application | In progress — submitted 2026-10-22; listing awaits Cursor review |
 
 ## Resolved issues (2026-10-12 — v0.5.1)
 
@@ -68,6 +70,7 @@ No new `SPC-` id. Assistance-log table fix. `spine-logging-governance` plugin
 ## Activity
 
 <!-- ISSUES-ACTIVITY+ -->
+- **2026-10-22 11:20:00** — Opened `SPC-011`: Cursor Marketplace application received; Website on the form is this GitHub repo; listing not live.
 - **2026-10-16 15:24:00** — Recorded `0.5.1` (assistance-log table; `spine-logging-governance` `0.1.1`). No new `SPC-` id.
 - **2026-09-08 20:45:00** — Released `0.5.0` (`SPC-008` VirusTotal release scan; `SPC-009` plugin-template polish; `SPC-010` lane A catalog + wave-1 catch-up).
 - **2026-09-08 19:56:00** — Opened `SPC-010`: lane A catalog schema (`0.1`) + `practice-framework` + wave-1 plugin catch-up; wave-2 deferred.
